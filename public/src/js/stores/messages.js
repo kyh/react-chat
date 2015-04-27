@@ -44,7 +44,7 @@ var messagesStore = assign({}, EventEmitter.prototype, {
   getChatByUserID: function(id){
     return messages[id];
   },
-  getAll: function(){
+  getAllChats: function(){
     return messages;
   }
 });
