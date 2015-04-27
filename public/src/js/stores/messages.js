@@ -1,5 +1,5 @@
 var Dispatcher = require('../dispatchers/dispatcher');
-var EventEmmitter = require('events').EventEmitter;
+var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
 var messages = {
@@ -33,10 +33,10 @@ var openChatID = parseInt(Object.keys(messages)[0], 10);
 
 var messagesStore = assign({}, EventEmitter.prototype, {
   addChangeListener: function(callback){
-    this.on('change', callback);
+    this.addListener('change', callback);
   },
   removeChangeListener: function(callback){
-    this.off('change', callback);
+    this.removeListener('change', callback);
   },
   getOpenChatUserID: function(){
     return openChatID;
@@ -52,3 +52,5 @@ var messagesStore = assign({}, EventEmitter.prototype, {
 messagesStore.dispatchToken = Dispatcher.register(function(payload){
 
 });
+
+module.exports = messagesStore;

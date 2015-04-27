@@ -15,3 +15,5 @@ var appDispatcher = assign(new Dispatcher(), {
     });
   }
 });
+
+module.exports = appDispatcher;
