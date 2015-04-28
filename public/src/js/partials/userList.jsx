@@ -21,7 +21,6 @@ var UserList = React.createClass({
       openChatID: MessagesStore.getOpenChatUserID(),
       messageList: messageList
     };
-    
 	},
 	render: function () {
 		this.state.messageList.sort(function (a, b) {
