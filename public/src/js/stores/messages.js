@@ -94,12 +94,15 @@ messagesStore.dispatchToken = Dispatcher.register(function(payload){
   var actions = {
     updateOpenChatID: function(payload) {
       openChatID = payload.action.userID;
+      messages[openChatID].lastAccess.currentUser = +new Date();
       messagesStore.emit('change');
     },
     sendMessage: function(payload) {
       var userID = payload.action.userID;
+      var currentUser = messages[userID];
 
-      messages[userID].messages.push({
+      currentUser.lastAccess.currentUser = +new Date();
+      currentUser.messages.push({
         contents: payload.action.message,
         timestamp: payload.action.timestamp,
         from: UserStore.user.id
