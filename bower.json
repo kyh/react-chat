@@ -1,11 +1,10 @@
 {
-  "name": "flux-getting-started",
+  "name": "react-chat",
   "version": "0.0.0",
-  "homepage": "https://github.com/rynclark/flux-getting-started",
   "authors": [
-    "Ryan Clark"
+    "Kaiyu Hsu"
   ],
-  "description": "Getting started with Flux",
+  "description": "React Chat app with Flux",
   "keywords": [
     "flux",
     "getting",
