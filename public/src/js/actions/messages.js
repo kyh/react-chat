@@ -9,4 +9,4 @@ var messagesActions = {
 	}
 };
 
-modules.exports = messagesActions;
+module.exports = messagesActions;

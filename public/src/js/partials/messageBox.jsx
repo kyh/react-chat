@@ -3,24 +3,24 @@ var MessagesStore = require('../stores/messages');
 var UserStore = require('../stores/user');
 var Utils = require('../utils');
 
-function getStateFromStore(){
+function getStateFromStore() {
   return MessagesStore.getChatByUserID(MessagesStore.getOpenChatUserID());
 }
 
 var MessageBox = React.createClass({
-  getInitialState: function(){
+  getInitialState: function() {
     return getStateFromStore();
   },
-  componentWillMount: function(){
+  componentWillMount: function() {
     MessagesStore.addChangeListener(this.onStoreChange);
   },
-  componentWillUnmount: function(){
+  componentWillUnmount: function() {
     MessagesStore.removeChangeListener(this.onStoreChange);
   },
-  onStoreChange: function(){
+  onStoreChange: function() {
     this.setState(getStateFromStore());
   },
-  render: function(){
+  render: function() {
     var messagesLength = this.state.messages.length;
     var currentUserID = UserStore.user.id;
 
