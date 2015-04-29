@@ -1,7 +1,9 @@
+var UserStore = require('../stores/user');
 var Dispatcher = require('../dispatchers/dispatcher');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
+// Will need to pull these messages in from server
 var messages = {
   2: {
     user: {
@@ -71,27 +73,38 @@ var messages = {
 var openChatID = parseInt(Object.keys(messages)[0], 10);
 
 var messagesStore = assign({}, EventEmitter.prototype, {
-  addChangeListener: function(callback){
+  addChangeListener: function(callback) {
     this.addListener('change', callback);
   },
-  removeChangeListener: function(callback){
+  removeChangeListener: function(callback) {
     this.removeListener('change', callback);
   },
-  getOpenChatUserID: function(){
+  getOpenChatUserID: function() {
     return openChatID;
   },
-  getChatByUserID: function(id){
+  getChatByUserID: function(id) {
     return messages[id];
   },
-  getAllChats: function(){
+  getAllChats: function() {
     return messages;
   }
 });
 
 messagesStore.dispatchToken = Dispatcher.register(function(payload){
   var actions = {
-    updateOpenChatID: function(payload){
+    updateOpenChatID: function(payload) {
       openChatID = payload.action.userID;
+      messagesStore.emit('change');
+    },
+    sendMessage: function(payload) {
+      var userID = payload.action.userID;
+
+      messages[userID].messages.push({
+        contents: payload.action.message,
+        timestamp: payload.action.timestamp,
+        from: UserStore.user.id
+      });
+
       messagesStore.emit('change');
     }
   };
