@@ -1,7 +1,7 @@
 var ReplyBox = require('../components/replyBox');
 var MessagesStore = require('../stores/messages');
 var UserStore = require('../stores/user');
-var Utils = require('../utils');
+var utils = require('../utils/utils');
 
 function getStateFromStore() {
   return MessagesStore.getChatByUserID(MessagesStore.getOpenChatUserID());
@@ -44,7 +44,7 @@ var MessageBox = React.createClass({
 
     if (lastMessage.from === currentUserID) {
       if (this.state.lastAccess.recipient >= lastMessage.timestamp) {
-        var date = Utils.getShortDate(lastMessage.timestamp);
+        var date = utils.getShortDate(lastMessage.timestamp);
         messages.push(
           <li key="read" className="message-box__item message-box__item--read">
             <div className="message-box__item__contents">

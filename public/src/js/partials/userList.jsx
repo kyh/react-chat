@@ -1,4 +1,4 @@
-var utils = require('../utils');
+var utils = require('../utils/utils');
 var MessagesStore = require('../stores/messages');
 var MessagesActions = require('../actions/messages');
 var UserStore = require('../stores/user');
