@@ -1,3 +1,4 @@
+var React = require('react');
 var utils = require('../utils/utils');
 var MessagesStore = require('../stores/messages');
 var MessagesActions = require('../actions/messages');
