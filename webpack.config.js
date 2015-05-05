@@ -10,7 +10,7 @@
    },
    context: __dirname,
    entry: {
-     app: ['webpack/hot/dev-server', './client/js/index.js']
+     app: ['webpack/hot/dev-server', './client/app/index.js']
    },
    output: {
      publicPath: '/',
