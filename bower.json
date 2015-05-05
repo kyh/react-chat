@@ -1,25 +1,21 @@
 {
-  "name": "react-chat",
+  "name": "webpack",
   "version": "0.0.0",
   "authors": [
-    "Kaiyu Hsu"
+    "Kaiyu Hsu <im.kaiyu@gmail.com>"
   ],
-  "description": "React Chat app with Flux",
-  "keywords": [
-    "flux",
-    "getting",
-    "started"
+  "moduleType": [
+    "es6"
   ],
   "license": "MIT",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
-    "public/libs",
+    "bower_components",
     "test",
     "tests"
   ],
   "dependencies": {
-    "react": "~0.12.2"
+    "react": "~0.13.1"
   }
 }
