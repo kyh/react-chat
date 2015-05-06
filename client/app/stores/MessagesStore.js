@@ -1,4 +1,6 @@
 var assign = require('object-assign');
+var ChatConstants = require('../constants/ChatConstants');
+var ActionTypes = ChatConstants.ActionTypes;
 
 var UserStore = require('../stores/UserStore');
 var Dispatcher = require('../dispatchers/ChatDispatcher');
@@ -92,12 +94,12 @@ var messagesStore = assign({}, EventEmitter.prototype, {
 });
 
 var messageStoreActions = {
-  CHANGE_CHAT_WINDOW: function(payload) {
+  [ActionTypes.CHANGE_CHAT_WINDOW]: (payload) => {
     openChatID = payload.action.userID;
     messages[openChatID].lastAccess.currentUser = +new Date();
     messagesStore.emit('change');
   },
-  SEND_MESSAGE: function(payload) {
+  [ActionTypes.SEND_MESSAGE]: (payload) => {
     var userID = payload.action.userID;
     var currentUser = messages[userID];
 
@@ -112,7 +114,7 @@ var messageStoreActions = {
   }
 };
 
-messagesStore.dispatchToken = Dispatcher.register(function(payload){
+messagesStore.dispatchToken = Dispatcher.register((payload) => {
   messageStoreActions[payload.action.type] && messageStoreActions[payload.action.type](payload);
 });
 
