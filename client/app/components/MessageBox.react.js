@@ -1,8 +1,8 @@
 var React = require('react');
 var ReplyBox = require('./ReplyBox.react');
 
-var MessagesStore = require('../stores/messages');
-var UserStore = require('../stores/user');
+var MessagesStore = require('../stores/MessagesStore');
+var UserStore = require('../stores/UserStore');
 var utils = require('../utils/utils');
 
 function getStateFromStore() {

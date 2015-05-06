@@ -1,6 +1,6 @@
 var assign = require('object-assign');
 
-var UserStore = require('../stores/user');
+var UserStore = require('../stores/UserStore');
 var Dispatcher = require('../dispatchers/ChatDispatcher');
 var EventEmitter = require('events').EventEmitter;
 

@@ -2,8 +2,8 @@ var React = require('react');
 var utils = require('../utils/utils');
 
 var MessagesActions = require('../actions/ChatViewAction');
-var MessagesStore = require('../stores/messages');
-var UserStore = require('../stores/user');
+var MessagesStore = require('../stores/MessagesStore');
+var UserStore = require('../stores/UserStore');
 
 function getStateFromStore() {
   var allMessages = MessagesStore.getAllChats();

@@ -1,7 +1,7 @@
 var React = require('react');
 
 var MessagesActions = require('../actions/ChatViewAction');
-var MessagesStore = require('../stores/messages');
+var MessagesStore = require('../stores/MessagesStore');
 
 var ReplyBox = React.createClass({
   getInitialState: function() {
