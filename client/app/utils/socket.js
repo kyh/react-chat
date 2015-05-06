@@ -1,4 +1,4 @@
-var MessagesActions = require('../actions/messages');
+var MessagesActions = require('../actions/ChatViewAction');
 
 var ws = new WebSocket("ws://localhost:1337/ws");
 

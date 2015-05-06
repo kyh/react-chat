@@ -1,7 +1,8 @@
-var UserStore = require('../stores/user');
-var Dispatcher = require('../dispatchers/dispatcher');
-var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
+
+var UserStore = require('../stores/user');
+var Dispatcher = require('../dispatchers/ChatDispatcher');
+var EventEmitter = require('events').EventEmitter;
 
 // Will need to pull these messages in from server
 var messages = {
@@ -91,12 +92,12 @@ var messagesStore = assign({}, EventEmitter.prototype, {
 });
 
 var messageStoreActions = {
-  updateOpenChatID: function(payload) {
+  CHANGE_CHAT_WINDOW: function(payload) {
     openChatID = payload.action.userID;
     messages[openChatID].lastAccess.currentUser = +new Date();
     messagesStore.emit('change');
   },
-  sendMessage: function(payload) {
+  SEND_MESSAGE: function(payload) {
     var userID = payload.action.userID;
     var currentUser = messages[userID];
 

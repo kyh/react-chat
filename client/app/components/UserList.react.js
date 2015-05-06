@@ -1,7 +1,8 @@
 var React = require('react');
 var utils = require('../utils/utils');
+
+var MessagesActions = require('../actions/ChatViewAction');
 var MessagesStore = require('../stores/messages');
-var MessagesActions = require('../actions/messages');
 var UserStore = require('../stores/user');
 
 function getStateFromStore() {

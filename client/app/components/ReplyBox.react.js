@@ -1,5 +1,6 @@
 var React = require('react');
-var MessagesActions = require('../actions/messages');
+
+var MessagesActions = require('../actions/ChatViewAction');
 var MessagesStore = require('../stores/messages');
 
 var ReplyBox = React.createClass({
