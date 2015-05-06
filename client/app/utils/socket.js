@@ -1,4 +1,3 @@
-var ChatViewAction = require('../actions/ChatViewAction');
 var ChatServerAction = require('../actions/ChatServerAction');
 
 var ws = new WebSocket("ws://localhost:1337/ws");
