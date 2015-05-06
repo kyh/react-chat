@@ -1,5 +1,6 @@
 var React = require('react');
-var ReplyBox = require('../components/replyBox');
+var ReplyBox = require('./ReplyBox.react');
+
 var MessagesStore = require('../stores/messages');
 var UserStore = require('../stores/user');
 var utils = require('../utils/utils');
