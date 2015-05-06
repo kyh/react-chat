@@ -1,7 +1,14 @@
 var Dispatcher = require('../dispatchers/ChatDispatcher');
 
-module.exports = {
-  recieveMessage: function() {
-
+var messageActions = {
+  recieveMessage: function(messageEvent) {
+    Dispatcher.handleServerAction({
+      type: ActionTypes.SEND_MESSAGE,
+      userID: messageEvent.userID,
+      message: messageEvent.message,
+      timestamp: messageEvent.timestamp
+    });
   }
 };
+
+module.exports = messageActions;
