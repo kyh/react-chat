@@ -14,14 +14,12 @@ $active-color: #6698C8;
 		padding: 5px 10px;
 		cursor: pointer;
 
-		&--new {
-			background: #EEF1F6;
-			font-weight: 500;
+		&:hover {
+			background: #4A5664;
+		}
 
-			.user-list__item__icon {
-				color: #1D9BCE;
-				margin-right: 3px;
-			}
+		&--new {
+
 		}
 
 		&--active {
@@ -30,8 +28,8 @@ $active-color: #6698C8;
 		}
 
 		&__name {
-			margin: 3px 0 0 0;
-			font-size: 16px;
+			margin: 0;
+			font-size: 14px;
 			font-weight: inherit;
 		}
 	}
