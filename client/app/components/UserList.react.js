@@ -83,19 +83,12 @@ var UserList = React.createClass({
 
       return (
         <li onClick={ this.changeOpenChat.bind(this, message.user.id) } className={ itemClasses } key={ message.user.id }>
-          <div className="user-list__item__picture">
-            <img src={ message.user.profilePicture } />
-          </div>
           <div className="user-list__item__details">
             <h4 className="user-list__item__name">
               { message.user.name }
-
-              <abbr className="user-list__item__timestamp">
-                { date }
-              </abbr>
             </h4>
             <span className="user-list__item__message">
-              { statusIcon } { message.lastMessage.contents }
+              { statusIcon }
             </span>
           </div>
         </li>

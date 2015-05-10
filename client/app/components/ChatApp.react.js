@@ -7,7 +7,6 @@ var ChatApp = React.createClass({
   render: function () {
     return (
       <div className="app">
-        <Header />
         <UserList />
         <MessageBox />
       </div>
