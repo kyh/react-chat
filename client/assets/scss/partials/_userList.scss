@@ -25,6 +25,10 @@ $active-color: #6698C8;
 		&--active {
 			color: #fff;
 			background: $active-color;
+
+			&:hover {
+				background: $active-color;
+			}
 		}
 
 		&__name {
