@@ -29,8 +29,7 @@ var MessageBox = React.createClass({
     var messages = this.state.messages.map(function (message, index) {
       var messageClasses = React.addons.classSet({
         'message-box__item': true,
-        'message-box__item--from-current': message.from === currentUserID,
-        'clear': true
+        'message-box__item--from-current': message.from === currentUserID
       });
 
       return (
