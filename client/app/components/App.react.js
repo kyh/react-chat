@@ -8,19 +8,14 @@ import ChatHandler from './Chat/Chat.react.js';
 let App = React.createClass({  
   render() {
     return (
-      <div className="nav">
-        <Link to="app">Home</Link>
-        <Link to="login">Login</Link>
-        <Link to="chat">Chat</Link>
-
-        <RouteHandler/>
-      </div>
+      <RouteHandler/>
     );
   }
 });
 
-let routes = (  
-  <Route name="app" path="/" handler={App}>
+let routes = (
+  <Route handler={App} path="/">
+    <DefaultRoute handler={LoginHandler} />
     <Route name="login" path="/login" handler={LoginHandler}/>
     <Route name="chat" path="/chat" handler={ChatHandler}/>
   </Route>
