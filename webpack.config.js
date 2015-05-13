@@ -1,6 +1,5 @@
  var webpack = require('webpack');
  var path = require('path');
- var bower_dir = path.join(__dirname, 'client/libs');
  var node_modules_dir = path.join(__dirname, 'node_modules');
 
  var config = {
@@ -23,17 +22,16 @@
    module: {
     noParse: [],
     loaders: [
-      { test: /\.js$/, loader: 'jsx-loader?harmony', exclude: [bower_dir, node_modules_dir]},
+      { test: /\.js?$/, loaders: ['react-hot', 'babel'], exclude: [node_modules_dir] },
       { test: /\.scss$/, loader: 'style!css!sass' },
       { test: /\.(woff|png)$/, loader: 'url-loader?limit=100000'}
     ]
    },
    plugins: [
-     new webpack.PrefetchPlugin('react'),
+     new webpack.HotModuleReplacementPlugin(),
+     new webpack.NoErrorsPlugin(),
      new webpack.optimize.CommonsChunkPlugin('app', null, false)
    ]
  };
-
- config.addVendor('react', path.resolve(bower_dir, 'react/react-with-addons.min.js'));
 
  module.exports = config;
