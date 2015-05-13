@@ -1,19 +1,31 @@
-var Dispatcher = require('flux').Dispatcher;
-var assign = require('object-assign');
+import { Dispatcher } from 'flux';
 
-var appDispatcher = assign(new Dispatcher(), {
-  handleServerAction: function(action) {
-    this.dispatch({
-      source: 'server',
-      action: action
-    });
-  },
-  handleViewAction: function(action) {
-    this.dispatch({
-      source: 'view',
-      action: action
-    });
+class AppDispatcher extends Dispatcher {
+  dispatchAsync(promise, types, action = {}) {
+    const { request, success, failure } = types;
+
+    this.dispatch(request, action);
+    promise.then(
+      response => this.dispatch(success, { action, response }),
+      error => this.dispatch(failure, { action, error })
+    );
   }
-});
 
-module.exports = appDispatcher;
+  dispatch(action = {}) {
+    if (!action.type) {
+      throw new Error('You forgot to specify type.');
+    }
+
+    if (process.env.NODE_ENV !== 'production') {
+      if (action.error) {
+        console.error(action);
+      } else {
+        console.log(action);
+      }
+    }
+
+    super.dispatch(action);
+  }
+}
+
+export default new AppDispatcher();
