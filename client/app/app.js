@@ -1,9 +1,11 @@
 require('../assets/scss/app.scss');
 
-var React = require('react');
-var ChatApp = require('./components/ChatApp.react');
+import React from 'react';
+import { RouterInit } from './components/App.react.js';
 
-React.render(<ChatApp />, document.body);
+RouterInit();
+
+window.React = React;
 
 if (module.hot) {
   module.hot.accept();
