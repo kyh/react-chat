@@ -1,13 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Navigation } from 'react-router';
 
 
-let Login = React.createClass({ 
+let Login = React.createClass({
+  mixins: [Navigation],
+
+  handleLogin() {
+    console.log('Logging in');
+    this.transitionTo('/chat');
+  },
+
   render() {
     return(
       <div className="login-page">
         <div>Welcome to login</div>
-        <Link to="chat">Login</Link>
+        <button onClick={this.handleLogin}>Login</button>
       </div>
     );
   }

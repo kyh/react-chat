@@ -28,7 +28,6 @@
     ]
    },
    plugins: [
-     new webpack.HotModuleReplacementPlugin(),
      new webpack.NoErrorsPlugin(),
      new webpack.optimize.CommonsChunkPlugin('app', null, false)
    ]
