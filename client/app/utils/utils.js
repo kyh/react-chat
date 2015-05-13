@@ -1,4 +1,4 @@
-var utils = {
+let Utils = {
 	getShortDate: function (timestamp) {
 		var distance = Math.round( ( +new Date() - timestamp ) / 60000 );
 		var date = new Date(timestamp);
@@ -71,4 +71,4 @@ var utils = {
 	}
 };
 
-module.exports = utils;
+export default Utils;

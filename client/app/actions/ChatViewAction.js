@@ -1,17 +1,17 @@
-var Dispatcher = require('../dispatchers/ChatDispatcher');
-var ChatConstants = require('../constants/ChatConstants');
-var Socket = require('../utils/socket');
-var ActionTypes = ChatConstants.ActionTypes;
+import Dispatcher from '../dispatchers/ChatDispatcher';
+import ChatConstants from '../constants/ChatConstants';
+import Socket from '../utils/socket';
+let ActionTypes = ChatConstants.ActionTypes;
 
-var messagesActions = {
+let messagesActions = {
   changeOpenChat: (newUserID) => {
-    Dispatcher.handleViewAction({
+    Dispatcher.dispatch({
       type: ActionTypes.CHANGE_CHAT_WINDOW,
       userID: newUserID
     });
   },
   sendMessage: (userID, message) => {
-    Dispatcher.handleViewAction({
+    Dispatcher.dispatch({
       type: ActionTypes.SEND_MESSAGE,
       userID: userID,
       message: message,
@@ -22,4 +22,4 @@ var messagesActions = {
   }
 };
 
-module.exports = messagesActions;
+export default messagesActions;

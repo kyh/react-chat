@@ -1,6 +1,6 @@
-var keyMirror = require('keymirror');
+import keyMirror from 'keymirror';
 
-var Constants = {
+let Constants = {
 
   ActionTypes: keyMirror({
     CHANGE_CHAT_WINDOW: null,
@@ -10,4 +10,4 @@ var Constants = {
 
 };
 
-module.exports = Constants;
+export default Constants;

@@ -1,10 +1,10 @@
-var assign = require('object-assign');
-var ChatConstants = require('../constants/ChatConstants');
-var ActionTypes = ChatConstants.ActionTypes;
+import assign from 'object-assign';
+import ChatConstants from '../constants/ChatConstants';
+let ActionTypes = ChatConstants.ActionTypes;
 
-var UserStore = require('../stores/UserStore');
-var Dispatcher = require('../dispatchers/ChatDispatcher');
-var EventEmitter = require('events').EventEmitter;
+import UserStore from '../stores/UserStore';
+import Dispatcher from '../dispatchers/ChatDispatcher';
+import { EventEmitter } from 'events';
 
 // Will need to pull these messages in from server
 var messages = {
@@ -73,9 +73,9 @@ var messages = {
   }
 };
 
-var openChatID = parseInt(Object.keys(messages)[0], 10);
+let openChatID = parseInt(Object.keys(messages)[0], 10);
 
-var messagesStore = assign({}, EventEmitter.prototype, {
+let MessagesStore = assign({}, EventEmitter.prototype, {
   addChangeListener: function(callback) {
     this.addListener('change', callback);
   },
@@ -93,29 +93,29 @@ var messagesStore = assign({}, EventEmitter.prototype, {
   }
 });
 
-var messageStoreActions = {
+let messageStoreActions = {
   [ActionTypes.CHANGE_CHAT_WINDOW]: (payload) => {
-    openChatID = payload.action.userID;
+    openChatID = payload.userID;
     messages[openChatID].lastAccess.currentUser = +new Date();
-    messagesStore.emit('change');
+    MessagesStore.emit('change');
   },
   [ActionTypes.SEND_MESSAGE]: (payload) => {
-    var userID = payload.action.userID;
+    var userID = payload.userID;
     var currentUser = messages[userID];
 
     currentUser.lastAccess.currentUser = +new Date();
     currentUser.messages.push({
-      contents: payload.action.message,
-      timestamp: payload.action.timestamp,
+      contents: payload.message,
+      timestamp: payload.timestamp,
       from: UserStore.user.id
     });
 
-    messagesStore.emit('change');
+    MessagesStore.emit('change');
   }
 };
 
-messagesStore.dispatchToken = Dispatcher.register((payload) => {
-  messageStoreActions[payload.action.type] && messageStoreActions[payload.action.type](payload);
+MessagesStore.dispatchToken = Dispatcher.register((payload) => {
+  messageStoreActions[payload.type] && messageStoreActions[payload.type](payload);
 });
 
-module.exports = messagesStore;
+export default MessagesStore;

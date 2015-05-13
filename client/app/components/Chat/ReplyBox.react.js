@@ -1,9 +1,9 @@
-var React = require('react');
+import React from 'react'; 
 
-var MessagesActions = require('../actions/ChatViewAction');
-var MessagesStore = require('../stores/MessagesStore');
+import MessagesActions from '../../actions/ChatViewAction';
+import MessagesStore from '../../stores/MessagesStore';
 
-var ReplyBox = React.createClass({
+let ReplyBox = React.createClass({
   getInitialState: function() {
     return {
       value: ''
@@ -35,4 +35,4 @@ var ReplyBox = React.createClass({
   }
 });
 
-module.exports = ReplyBox;
+export default ReplyBox;

@@ -1,10 +1,10 @@
-var Dispatcher = require('../dispatchers/ChatDispatcher');
-var ChatConstants = require('../constants/ChatConstants');
-var ActionTypes = ChatConstants.ActionTypes;
+import Dispatcher from '../dispatchers/ChatDispatcher';
+import ChatConstants from '../constants/ChatConstants';
+let ActionTypes = ChatConstants.ActionTypes;
 
-var messageActions = {
+let messageActions = {
   recieveMessage: (messageEvent) => {
-    Dispatcher.handleServerAction({
+    Dispatcher.dispatch({
       type: ActionTypes.SEND_MESSAGE,
       userID: messageEvent.userID,
       message: messageEvent.message,
@@ -16,4 +16,4 @@ var messageActions = {
   }
 };
 
-module.exports = messageActions;
+export default messageActions;

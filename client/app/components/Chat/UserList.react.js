@@ -1,9 +1,9 @@
-var React = require('react');
-var utils = require('../utils/utils');
+import React from 'react/addons'; 
 
-var MessagesActions = require('../actions/ChatViewAction');
-var MessagesStore = require('../stores/MessagesStore');
-var UserStore = require('../stores/UserStore');
+import Utils from '../../utils/utils';
+import MessagesActions from '../../actions/ChatViewAction';
+import MessagesStore from '../../stores/MessagesStore';
+import UserStore from '../../stores/UserStore';
 
 function getStateFromStore() {
   var allMessages = MessagesStore.getAllChats();
@@ -54,7 +54,7 @@ var UserList = React.createClass({
     });
 
     var messages = this.state.messageList.map(function(message, index) {
-      var date = utils.getNiceDate(message.lastMessage.timestamp);
+      var date = Utils.getNiceDate(message.lastMessage.timestamp);
       var statusIcon;
 
       if (message.lastMessage.from !== message.user.id) {
@@ -104,4 +104,4 @@ var UserList = React.createClass({
   }
 });
 
-module.exports = UserList;
+export default UserList;

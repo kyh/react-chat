@@ -1,4 +1,4 @@
-var userStore = {
+let UserStore = {
   user: {
     id: 1,
     name: 'John Doe',
@@ -6,4 +6,4 @@ var userStore = {
   }
 };
 
-module.exports = userStore;
+export default UserStore;

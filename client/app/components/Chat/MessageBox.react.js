@@ -1,15 +1,15 @@
-var React = require('react');
-var ReplyBox = require('./ReplyBox.react');
+import React from 'react'; 
+import ReplyBox from './ReplyBox.react';
 
-var MessagesStore = require('../stores/MessagesStore');
-var UserStore = require('../stores/UserStore');
-var utils = require('../utils/utils');
+import MessagesStore from '../../stores/MessagesStore';
+import UserStore from '../../stores/UserStore';
+import utils from '../../utils/utils';
 
 function getStateFromStore() {
   return MessagesStore.getChatByUserID(MessagesStore.getOpenChatUserID());
 }
 
-var MessageBox = React.createClass({
+let MessageBox = React.createClass({
   getInitialState: function() {
     return getStateFromStore();
   },
@@ -26,7 +26,7 @@ var MessageBox = React.createClass({
     var messagesLength = this.state.messages.length;
     var currentUserID = UserStore.user.id;
 
-    var messages = this.state.messages.map(function (message, index) {
+    var messages = this.state.messages.map(function(message, index) {
       var messageClasses = React.addons.classSet({
         'message-box__item': true,
         'message-box__item--from-current': message.from === currentUserID
@@ -67,4 +67,4 @@ var MessageBox = React.createClass({
   }
 });
 
-module.exports = MessageBox;
+export default MessageBox;
