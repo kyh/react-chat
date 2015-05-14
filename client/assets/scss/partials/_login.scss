@@ -1,0 +1,65 @@
+$login-bg:            #2c3338;
+$login-input-bg:      #3b4148;
+$login-input-icon-bg: #363b41;
+$login-submit-bg:     #3da7f2;
+$login-input-color:   #ABB6C1;
+
+.login-page {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 30px;
+  background: $login-bg;
+}
+
+.login-form {
+  margin: 0 auto;
+
+  input {
+    font-size: 14px;
+    line-height: 1.5em;
+    -webkit-appearance: none;
+    height: 50px;
+  }
+
+  &__input {
+    border: none;
+    background-color: $login-input-bg;
+    border-radius: 0px 3px 3px 0px;
+    color: $login-input-color;
+    margin-bottom: 1em;
+    padding: 0 15px;
+    width: 230px;
+  }
+
+  &__icon {
+    background-color: $login-input-icon-bg;
+    border-radius: 3px 0px 0px 3px;
+    color: $login-input-color;
+    display: block;
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    width: 50px;
+  }
+
+  &__submit {
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: $login-submit-bg;
+    text-shadow: 0 1px 2px rgba(0,0,0,.5);
+    border-bottom: 3px solid #1168B9;
+    color: #eee;
+    font-weight: bold;
+    margin-bottom: 2em;
+    text-transform: uppercase;
+    width: 280px;
+    transition: background 0.4s ease;
+
+    &:hover {
+      background-color: darken($login-submit-bg, 10);
+    }
+  }
+}
