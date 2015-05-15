@@ -1,0 +1,9 @@
+{
+  "indent"        : 2,        // {int} Number of spaces to use for indentation
+  "es5"           : true,     // true: Allow ES5 syntax (ex: getters and setters)
+  "esnext"        : true,     // true: Allow ES.next (ES6) syntax (ex: `const`)
+  "browser"       : true,     // Web Browser (window, document, etc)
+  "browserify"    : true,     // Browserify (node.js code in the browser)
+  "node"          : true,     // Node.js
+  "worker"        : true      // Web Workers
+}
