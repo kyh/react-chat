@@ -1,6 +1,6 @@
 import Dispatcher from '../dispatchers/ChatDispatcher';
 import ChatConstants from '../constants/ChatConstants';
-import Socket from '../utils/socket';
+import Socket from '../utils/WebUtils';
 let ActionTypes = ChatConstants.ActionTypes;
 
 let messagesActions = {
