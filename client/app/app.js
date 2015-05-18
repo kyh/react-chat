@@ -1,9 +1,11 @@
 require('../assets/scss/app.scss');
 
 import React from 'react';
-import { RouterInit } from './components/App.react.js';
+import Socket from './utils/WebUtils';
+import Router from './components/App.react';
 
-RouterInit();
+Router.init();
+Socket.init();
 
 window.React = React;
 

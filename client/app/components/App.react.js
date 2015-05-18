@@ -21,8 +21,12 @@ let routes = (
   </Route>
 );
 
-export function RouterInit(){
-  Router.run(routes, Router.HistoryLocation, function(Handler) {  
-    React.render(<Handler/>, document.body);
-  });
+let Routes = {
+  init() {
+    Router.run(routes, Router.HistoryLocation, function(Handler) {  
+      React.render(<Handler/>, document.body);
+    }); 
+  }
 }
+
+export default Routes;
