@@ -3,7 +3,7 @@ import ChatConstants from '../constants/ChatConstants';
 let ActionTypes = ChatConstants.ActionTypes;
 
 let messageActions = {
-  recieveMessage: (messageEvent) => {
+  recieveMessage(messageEvent) {
     Dispatcher.dispatch({
       type: ActionTypes.SEND_MESSAGE,
       userID: messageEvent.userID,
@@ -11,7 +11,7 @@ let messageActions = {
       timestamp: messageEvent.timestamp
     });
   },
-  recieveAllMessages: () => {
+  recieveAllMessages() {
 
   }
 };

@@ -4,13 +4,13 @@ import Socket from '../utils/WebUtils';
 let ActionTypes = ChatConstants.ActionTypes;
 
 let messagesActions = {
-  changeOpenChat: (newUserID) => {
+  changeOpenChat(newUserID) {
     Dispatcher.dispatch({
       type: ActionTypes.CHANGE_CHAT_WINDOW,
       userID: newUserID
     });
   },
-  sendMessage: (userID, message) => {
+  sendMessage(userID, message) {
     Dispatcher.dispatch({
       type: ActionTypes.SEND_MESSAGE,
       userID: userID,
@@ -19,6 +19,9 @@ let messagesActions = {
     });
     // console.log(Socket);
     // Socket.send(message);
+  },
+  login(name, email) {
+
   }
 };
 

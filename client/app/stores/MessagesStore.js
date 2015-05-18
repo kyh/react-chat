@@ -76,19 +76,19 @@ var messages = {
 let openChatID = parseInt(Object.keys(messages)[0], 10);
 
 let MessagesStore = assign({}, EventEmitter.prototype, {
-  addChangeListener: function(callback) {
+  addChangeListener(callback) {
     this.addListener('change', callback);
   },
-  removeChangeListener: function(callback) {
+  removeChangeListener(callback) {
     this.removeListener('change', callback);
   },
-  getOpenChatUserID: function() {
+  getOpenChatUserID() {
     return openChatID;
   },
-  getChatByUserID: function(id) {
+  getChatByUserID(id) {
     return messages[id];
   },
-  getAllChats: function() {
+  getAllChats() {
     return messages;
   }
 });
