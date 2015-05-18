@@ -1,7 +1,9 @@
 $login-bg:            #2c3338;
 $login-input-bg:      #3b4148;
+$login-input-focus:   #3273AF;
 $login-input-icon-bg: #363b41;
 $login-submit-bg:     #3da7f2;
+$login-submit-dark:   #1168B9;
 $login-input-color:   #ABB6C1;
 
 .login-page {
@@ -23,13 +25,22 @@ $login-input-color:   #ABB6C1;
   }
 
   &__input {
-    border: none;
+    border: 1px solid transparent;
+    border-left: none;
     background-color: $login-input-bg;
     border-radius: 0px 3px 3px 0px;
     color: $login-input-color;
     margin-bottom: 1em;
     padding: 0 15px;
     width: 230px;
+    transition: border 0.3s ease;
+
+    &:focus {
+      border-color: $login-input-focus;
+      & + span {
+        border-color: $login-input-focus;
+      }
+    }
   }
 
   &__icon {
@@ -42,6 +53,9 @@ $login-input-color:   #ABB6C1;
     line-height: 50px;
     text-align: center;
     width: 50px;
+    border: 1px solid transparent;
+    border-right: none;
+    transition: border 0.233s ease;
   }
 
   &__submit {
@@ -50,7 +64,7 @@ $login-input-color:   #ABB6C1;
     border-radius: 3px;
     background-color: $login-submit-bg;
     text-shadow: 0 1px 2px rgba(0,0,0,.5);
-    border-bottom: 3px solid #1168B9;
+    border-bottom: 3px solid $login-submit-dark;
     color: #eee;
     font-weight: bold;
     margin-bottom: 2em;

@@ -15,12 +15,12 @@ let Login = React.createClass({
       <div className="login-page">
         <form className="login-form" onSubmit={this.handleLogin}>
           <div>
-            <span className="login-form__icon"></span>
             <input className="login-form__input" type="text" placeholder="Name" required />
+            <span className="login-form__icon"></span>
           </div>
           <div>
-            <span className="login-form__icon"></span>
             <input className="login-form__input" type="email" placeholder="Email" required />
+            <span className="login-form__icon"></span>
           </div>
           <input className="login-form__submit" type="submit" value="Sign In" />
         </form>
