@@ -17,6 +17,7 @@ body {
   height: 100%;
   overflow: hidden;
 }
+
 ul,
 ol {
   margin: 0;
@@ -72,6 +73,12 @@ textarea {
 .hidden {
   display: none !important;
   visibility: hidden;
+}
+
+.app {
+  display: flex;
+  align-content: stretch;
+  height: 100%;
 }
 
 /**

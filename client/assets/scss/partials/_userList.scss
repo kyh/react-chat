@@ -1,37 +1,33 @@
 .user-list {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	width: 220px;
-	color: #ccc;
-	background: $bg-color;
+  width: 220px;
+  color: #ccc;
+  background: $bg-color;
 
-	&__item {
-		padding: 5px 10px;
-		cursor: pointer;
+  &__item {
+    padding: 5px 10px;
+    cursor: pointer;
 
-		&:hover {
-			background: #4A5664;
-		}
+    &:hover {
+      background: #4A5664;
+    }
 
-		&--new {
+    &--new {
 
-		}
+    }
 
-		&--active {
-			color: #fff;
-			background: $active-color;
+    &--active {
+      color: #fff;
+      background: $active-color;
 
-			&:hover {
-				background: $active-color;
-			}
-		}
+      &:hover {
+          background: $active-color;
+      }
+    }
 
-		&__name {
-			margin: 0;
-			font-size: 14px;
-			font-weight: inherit;
-		}
-	}
+    &__name {
+      margin: 0;
+      font-size: 14px;
+      font-weight: inherit;
+    }
+  }
 }
