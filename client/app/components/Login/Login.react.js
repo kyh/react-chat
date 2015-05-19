@@ -1,21 +1,73 @@
 import React from 'react';
 import { Navigation } from 'react-router';
 
+function validateEmail(email) {
+  var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+  return re.test(email);
+}
 
 let Login = React.createClass({
   mixins: [Navigation],
-
+  getInitialState: function() {
+    return {
+      name: {
+        text: 'Hey there!'
+      },
+      email: {
+        valid: false,
+        text: 'Invalid email'
+      }
+    };
+  },
   handleLogin(e) {
     e.preventDefault();
+    if (!this.state.email.valid) {
+      this.refs.emailInput.getDOMNode().focus();
+      return;
+    }
     this.transitionTo('/chat');
+  },
+  updateName(e) {
+    var target = e.target;
+    if (target.value) {
+      target.previousSibling.classList.add('in');
+    } else {
+      target.previousSibling.classList.remove('in');
+    }
+  },
+  updateEmail(e) {
+    var target = e.target;
+    if (target.value) {
+      if (!validateEmail(target.value)) {
+        this.setState({
+          email: {
+            valid: false,
+            text: 'Invalid email'
+          }
+        });
+      } else {
+        this.setState({
+          email: {
+            valid: true,
+            text: 'Nice email!'
+          }
+        });
+      }
+      target.previousSibling.classList.add('in');
+    } else {
+      target.previousSibling.classList.remove('in');
+    }
   },
 
   render() {
     return(
       <div className="login-page">
         <form className="login-form" onSubmit={this.handleLogin}>
-          <div>
-            <input className="login-form__input" type="text" placeholder="Name" required />
+          <label>
+            <span className="login-form__placeholder">
+              { this.state.name.text }
+            </span>
+            <input className="login-form__input" type="text" placeholder="Name" onChange={ this.updateName } required />
             <span className="login-form__icon">
               <svg version="1.1" width="14px" viewBox="0 0 18 19" preserveAspectRatio="xMidYMid meet">
                 <g>
@@ -25,9 +77,12 @@ let Login = React.createClass({
                 </g>
               </svg>
             </span>
-          </div>
-          <div>
-            <input className="login-form__input" type="email" placeholder="Email" required />
+          </label>
+          <label>
+            <span className="login-form__placeholder">
+              { this.state.email.text }
+            </span>
+            <input className="login-form__input" type="email" placeholder="Email" ref="emailInput" onChange={ this.updateEmail } required />
             <span className="login-form__icon">
               <svg version="1.1" width="16px" viewBox="0 0 22 16" preserveAspectRatio="xMidYMid meet">
                 <g>
@@ -40,7 +95,7 @@ let Login = React.createClass({
                 </g>
               </svg>
             </span>
-          </div>
+          </label>
           <input className="login-form__submit" type="submit" value="Sign In" />
         </form>
       </div>
