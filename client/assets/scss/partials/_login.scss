@@ -33,7 +33,7 @@ $login-input-color:   #ABB6C1;
     margin-bottom: 1em;
     padding: 0 15px;
     width: 230px;
-    transition: border 0.3s ease;
+    transition: border 0.233s ease;
 
     &:focus {
       border-color: $login-input-focus;
@@ -47,15 +47,18 @@ $login-input-color:   #ABB6C1;
     background-color: $login-input-icon-bg;
     border-radius: 3px 0px 0px 3px;
     color: $login-input-color;
-    display: block;
+    display: flex;
+    justify-content: center;
     float: left;
     height: 50px;
-    line-height: 50px;
-    text-align: center;
     width: 50px;
     border: 1px solid transparent;
     border-right: none;
     transition: border 0.233s ease;
+
+    svg path {
+      fill: $login-input-color;
+    }
   }
 
   &__submit {
