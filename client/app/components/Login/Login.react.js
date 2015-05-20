@@ -101,7 +101,7 @@ let Login = React.createClass({
               </svg>
             </span>
           </label>
-          <input className="login-form__submit" type="submit" value="Sign In" />
+          <input className="login-form__submit" type="submit" value="Let's Talk" />
         </form>
       </div>
     );
