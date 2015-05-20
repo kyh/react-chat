@@ -32,14 +32,14 @@ $login-input-color:   #ABB6C1;
 
   &__name-wrapper {
     @include bounceInLeft(
-      $duration: 1s,
+      $duration: 0.85s,
       $function: ease
     );
   }
 
   &__email-wrapper {
     @include bounceInLeft(
-      $duration: 1s,
+      $duration: 0.85s,
       $delay: .23s,
       $function: ease
     );
@@ -108,7 +108,7 @@ $login-input-color:   #ABB6C1;
     width: 280px;
     transition: background 0.4s ease;
     @include bounceInLeft(
-      $duration: 1s,
+      $duration: 0.85s,
       $delay: .46s,
       $function: ease
     );
