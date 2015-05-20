@@ -28,7 +28,9 @@ function _getEventType(events, el) {
 
 function _useEventType(type, el){
   return new Promise((resolve) => {
-    el.addEventListener(EVENTS[type], () => {
+    let eventType = EVENTS[type];
+    el.addEventListener(eventType, () => {
+      el.removeEventListener(eventType);
       resolve(el);
     });
   });
@@ -39,6 +41,15 @@ var EVENTS;
 let AnimationMixin = {
   init() {
     EVENTS = whichEvents();
+  },
+  addAnimation(el, className) {
+    return new Promise((resolve) => {
+      el.classList.add(className);
+      this.onAnimationEnd(el).then(() => {
+        el.classList.remove(className);
+        resolve(el);
+      });
+    });
   },
   onAnimationEnd(el) {
     return _useEventType('animationEnd', el);
