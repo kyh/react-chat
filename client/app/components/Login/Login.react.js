@@ -1,5 +1,7 @@
-import React from 'react';
+import React from 'react/addons';
 import { Navigation } from 'react-router';
+
+const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
 
 function validateEmail(email) {
   var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
@@ -58,12 +60,15 @@ let Login = React.createClass({
       target.previousSibling.classList.remove('in');
     }
   },
+  componentDidMount() {
+    console.log('login page');
+  },
 
   render() {
     return(
       <div className="login-page">
         <form className="login-form" onSubmit={this.handleLogin}>
-          <label>
+          <label className="login-form__name-wrapper">
             <span className="login-form__placeholder">
               { this.state.name.text }
             </span>
@@ -78,7 +83,7 @@ let Login = React.createClass({
               </svg>
             </span>
           </label>
-          <label>
+          <label className="login-form__email-wrapper">
             <span className="login-form__placeholder">
               { this.state.email.text }
             </span>

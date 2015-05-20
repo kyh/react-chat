@@ -30,6 +30,21 @@ $login-input-color:   #ABB6C1;
     overflow: hidden;
   }
 
+  &__name-wrapper {
+    @include bounceInLeft(
+      $duration: 1s,
+      $function: ease
+    );
+  }
+
+  &__email-wrapper {
+    @include bounceInLeft(
+      $duration: 1s,
+      $delay: .23s,
+      $function: ease
+    );
+  }
+
   &__placeholder {
     position: absolute;
     right: -65px;
@@ -80,20 +95,31 @@ $login-input-color:   #ABB6C1;
   }
 
   &__submit {
+    position: relative;
     border: none;
     cursor: pointer;
     border-radius: 3px;
     background-color: $login-submit-bg;
     text-shadow: 0 1px 2px rgba(0,0,0,.5);
-    border-bottom: 3px solid $login-submit-dark;
+    box-shadow: 0 3px $login-submit-dark;
     color: #eee;
     font-weight: bold;
     text-transform: uppercase;
     width: 280px;
     transition: background 0.4s ease;
+    @include bounceInLeft(
+      $duration: 1s,
+      $delay: .46s,
+      $function: ease
+    );
 
     &:hover {
       background-color: darken($login-submit-bg, 10);
+    }
+
+    &:active {
+      top: 3px;
+      box-shadow: 0 0 $login-submit-dark;
     }
   }
 }
