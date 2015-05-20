@@ -25,3 +25,27 @@ function _getEventType(events, el) {
     }
   }
 }
+
+function _useEventType(type, el){
+  return new Promise((resolve) => {
+    el.addEventListener(EVENTS[type], () => {
+      resolve(el);
+    });
+  });
+}
+
+var EVENTS;
+
+let AnimationMixin = {
+  init() {
+    EVENTS = whichEvents();
+  },
+  onAnimationEnd(el) {
+    return _useEventType('animationEnd', el);
+  },
+  onTransitionEnd(el) {
+    return _useEventType('transitionEnd', el);
+  }
+};
+
+export default AnimationMixin;
