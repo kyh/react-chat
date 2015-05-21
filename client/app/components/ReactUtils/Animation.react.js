@@ -1,12 +1,12 @@
 function whichEvents(){
-    let el = document.createElement('fakeelement');
-    let transitions = {
+    var el = document.createElement('fakeelement');
+    const transitions = {
       'transition':'transitionend',
       'OTransition':'oTransitionEnd',
       'MozTransition':'transitionend',
       'WebkitTransition':'webkitTransitionEnd'
     };
-    let animations = {
+    const animations = {
       'animation':'animationend',
       'mozAnimation':'animationend',
       'webkitAnimation':'webkitAnimationEnd'
@@ -38,7 +38,7 @@ function _useEventType(type, el){
 
 var EVENTS;
 
-let AnimationEvents = {
+const AnimationEvents = {
   init() {
     EVENTS = whichEvents();
   }
