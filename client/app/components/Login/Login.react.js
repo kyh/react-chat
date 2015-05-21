@@ -1,6 +1,6 @@
 import React from 'react/addons';
 import { Navigation } from 'react-router';
-import AnimationMixin from '../ReactUtils/Animation.react';
+import { onAnimationEnd } from '../ReactUtils/Animation.react';
 
 const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
 
@@ -10,7 +10,7 @@ function validateEmail(email) {
 }
 
 let Login = React.createClass({
-  mixins: [Navigation, AnimationMixin],
+  mixins: [Navigation],
   getInitialState: function() {
     return {
       name: {
@@ -63,7 +63,7 @@ let Login = React.createClass({
   },
   componentDidMount() {
     console.log('login page');
-    this.onAnimationEnd(this.refs.submitButton.getDOMNode()).then((el) => {
+    onAnimationEnd(this.refs.submitButton.getDOMNode()).then((el) => {
       console.log('lalla');
     })
   },
