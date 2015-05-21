@@ -1,12 +1,12 @@
 function whichEvents(){
-    var el = document.createElement('fakeelement');
-    var transitions = {
+    let el = document.createElement('fakeelement');
+    let transitions = {
       'transition':'transitionend',
       'OTransition':'oTransitionEnd',
       'MozTransition':'transitionend',
       'WebkitTransition':'webkitTransitionEnd'
     };
-    var animations = {
+    let animations = {
       'animation':'animationend',
       'mozAnimation':'animationend',
       'webkitAnimation':'webkitAnimationEnd'
@@ -19,8 +19,8 @@ function whichEvents(){
 }
 
 function _getEventType(events, el) {
-  for(var t in events){
-    if( el.style[t] !== undefined ){
+  for (let t in events){
+    if (el.style[t] !== undefined){
       return events[t];
     }
   }
@@ -47,7 +47,7 @@ let AnimationEvents = {
 export function addAnimation(el, className) {
   return new Promise((resolve) => {
     el.classList.add(className);
-    this.onAnimationEnd(el).then(() => {
+    onAnimationEnd(el).then(() => {
       el.classList.remove(className);
       resolve(el);
     });
