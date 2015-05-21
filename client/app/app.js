@@ -3,9 +3,9 @@ require('../assets/scss/app.scss');
 import React from 'react';
 import Socket from './utils/WebUtils';
 import Router from './components/App.react';
-import AnimationMixin from './components/ReactUtils/Animation.react';
+import AnimationEvents from './components/ReactUtils/Animation.react';
 
-AnimationMixin.init();
+AnimationEvents.init();
 Router.init();
 Socket.init();
 
