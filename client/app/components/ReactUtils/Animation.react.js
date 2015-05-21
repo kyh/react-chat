@@ -38,25 +38,28 @@ function _useEventType(type, el){
 
 var EVENTS;
 
-let AnimationMixin = {
+let AnimationEvents = {
   init() {
     EVENTS = whichEvents();
-  },
-  addAnimation(el, className) {
-    return new Promise((resolve) => {
-      el.classList.add(className);
-      this.onAnimationEnd(el).then(() => {
-        el.classList.remove(className);
-        resolve(el);
-      });
-    });
-  },
-  onAnimationEnd(el) {
-    return _useEventType('animationEnd', el);
-  },
-  onTransitionEnd(el) {
-    return _useEventType('transitionEnd', el);
   }
 };
 
-export default AnimationMixin;
+export function addAnimation(el, className) {
+  return new Promise((resolve) => {
+    el.classList.add(className);
+    this.onAnimationEnd(el).then(() => {
+      el.classList.remove(className);
+      resolve(el);
+    });
+  });
+}
+
+export function onAnimationEnd(el) {
+  return _useEventType('animationEnd', el);
+}
+
+export function onTransitionEnd(el) {
+  return _useEventType('transitionEnd', el);
+}
+
+export default AnimationEvents;
