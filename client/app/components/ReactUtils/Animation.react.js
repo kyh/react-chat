@@ -29,10 +29,11 @@ function _getEventType(events, el) {
 function _useEventType(type, el){
   return new Promise((resolve) => {
     let eventType = EVENTS[type];
-    el.addEventListener(eventType, () => {
-      el.removeEventListener(eventType);
+    let listener = function() {
+      el.removeEventListener(eventType, listener);
       resolve(el);
-    });
+    };
+    el.addEventListener(eventType, listener);
   });
 }
 
