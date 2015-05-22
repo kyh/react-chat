@@ -1,3 +1,21 @@
+export function addAnimation(el, className) {
+  return new Promise((resolve) => {
+    el.classList.add(className);
+    onAnimationEnd(el).then(() => {
+      el.classList.remove(className);
+      resolve(el);
+    });
+  });
+}
+
+export function onAnimationEnd(el) {
+  return _useEventType('animationEnd', el);
+}
+
+export function onTransitionEnd(el) {
+  return _useEventType('transitionEnd', el);
+}
+
 function whichEvents(){
     var el = document.createElement('fakeelement');
     const transitions = {
@@ -43,23 +61,5 @@ const AnimationEvents = {
     EVENTS = whichEvents();
   }
 };
-
-export function addAnimation(el, className) {
-  return new Promise((resolve) => {
-    el.classList.add(className);
-    onAnimationEnd(el).then(() => {
-      el.classList.remove(className);
-      resolve(el);
-    });
-  });
-}
-
-export function onAnimationEnd(el) {
-  return _useEventType('animationEnd', el);
-}
-
-export function onTransitionEnd(el) {
-  return _useEventType('transitionEnd', el);
-}
 
 export default AnimationEvents;
