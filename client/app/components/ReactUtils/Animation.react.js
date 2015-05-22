@@ -29,17 +29,11 @@ function _getEventType(events, el) {
 function _useEventType(type, el){
   return new Promise((resolve) => {
     let eventType = EVENTS[type];
-    el.addEventListener(eventType, _bindCallee((callee) => {
-      el.removeEventListener(eventType, callee);
+    el.addEventListener(eventType, function callee() {
+      el.removeEventListener(eventType, callee, false);
       resolve(el);
-    }));
+    }, false);
   });
-}
-
-function _bindCallee(fn) {
-  return function() {
-    fn.bind(null, bindCallee(fn)).apply(this, arguments);
-  };
 }
 
 var EVENTS;
