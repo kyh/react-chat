@@ -28,5 +28,7 @@
     "webpack": "^1.8.4",
     "webpack-dev-server": "^1.6.6"
   },
-  "dependencies": {}
+  "dependencies": {
+    "velocity-animate": "^1.2.2"
+  }
 }
