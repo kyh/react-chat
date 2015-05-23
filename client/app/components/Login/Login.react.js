@@ -8,7 +8,7 @@ function validateEmail(email) {
 }
 
 const INPUT_TEXT = {
-  name: { valid: 'Hey there!', invalid: 'Invalid name'},
+  name: { valid: 'Hey there!', invalid: 'Hey there!'},
   email: { valid: 'Nice email!', invalid: 'Invalid email' }
 };
 
@@ -51,10 +51,10 @@ let Login = React.createClass({
   updateName(e) {
     var target = e.target;
     if (target.value) {
-      this.setState({ name: { valid: true, text: INPUT_TEXT.name.valid }});
+      this.handleInputState(true, 'name');
       target.previousSibling.classList.add('in');
     } else {
-      this.setState({name: { valid: false, text: INPUT_TEXT.name.valid }});
+      this.handleInputState(false, 'name');
       target.previousSibling.classList.remove('in');
     }
   },
@@ -62,14 +62,23 @@ let Login = React.createClass({
     var target = e.target;
     if (target.value) {
       if (!validateEmail(target.value)) {
-        this.setState({ email: { valid: false, text: INPUT_TEXT.email.invalid }});
+        this.handleInputState(false, 'email');
       } else {
-        this.setState({ email: { valid: true, text: INPUT_TEXT.email.valid }});
+        this.handleInputState(true, 'email');
       }
       target.previousSibling.classList.add('in');
     } else {
       target.previousSibling.classList.remove('in');
     }
+  },
+  handleInputState(valid, textFrom) {
+    var v = (valid) ? 'valid' : 'invalid';
+    this.setState({
+      [textFrom]: {
+        valid: valid,
+        text: INPUT_TEXT[textFrom][v]
+      }
+    });
   },
   componentDidMount() {
     console.log('Login Page: loaded');
