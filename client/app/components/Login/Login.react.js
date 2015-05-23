@@ -30,26 +30,23 @@ let Login = React.createClass({
     e.preventDefault();
 
     if (!this.state.name.valid) {
-      Velocity.animate(this.refs.formWrapper.getDOMNode().childNodes[0], 'callout.shake')
-        .then(() => {
-          this.refs.nameInput.getDOMNode().focus();
-        });
+      this.handleInvalidInput(this.refs.nameInput.getDOMNode());
       return;
     }
 
     if (!this.state.email.valid) {
-      Velocity.animate(this.refs.formWrapper.getDOMNode().childNodes[1], 'callout.shake')
-        .then(() => {
-          this.refs.emailInput.getDOMNode().focus();
-        });
+      this.handleInvalidInput(this.refs.emailInput.getDOMNode());
       return;
     }
 
-    // Velocity(this.refs.formWrapper.getDOMNode().childNodes, 'login.bounceIn', {
-    //   stagger: 230,
-    //   display: 'block'
-    // });
+    // Velocity(this.refs.loginPage.getDOMNode(), 'login.exitOut');
     // this.transitionTo('/chat');
+  },
+  handleInvalidInput(el) {
+    Velocity.animate(el.parentNode, 'callout.shake')
+      .then(() => {
+        el.focus();
+      });
   },
   updateName(e) {
     var target = e.target;
