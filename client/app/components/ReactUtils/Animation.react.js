@@ -1,5 +1,4 @@
-import Velocity from 'velocity-animate';
-import 'velocity-animate/velocity.ui';
+import LoginAnimation from './LoginAnimations';
 
 export function addAnimation(options = {el: null, className: '', delay: 0, beforeBegin: null }) {
   var {el, className, delay, beforeBegin} = options;
@@ -77,23 +76,12 @@ function _useEventType(type, el){
   });
 }
 
-function registerVelocityEvents() {
-  Velocity.RegisterEffect('login.bounceIn', {
-    defaultDuration: 1200,
-    calls: [
-        [ { opacity: [ 1, 0 ], scaleX: [ 1.03, 0.3 ], scaleY: [ 1.03, 0.3 ] }, 0.40 ],
-        [ { scaleX: 0.95, scaleY: 0.92, translateZ: 0 }, 0.20 ],
-        [ { scaleX: 1, scaleY: 1 }, 0.50 ]
-    ]
-  });
-}
-
 var EVENTS;
 
 const AnimationEvents = {
   init() {
     EVENTS = whichEvents();
-    registerVelocityEvents();
+    LoginAnimation.init();
   }
 };
 

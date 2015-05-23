@@ -1,8 +1,6 @@
 import React from 'react';
-import { Navigation } from 'react-router';
-
 import Velocity from 'velocity-animate';
-import 'velocity-animate/velocity.ui';
+import { Navigation } from 'react-router';
 
 function validateEmail(email) {
   var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
@@ -28,6 +26,7 @@ let Login = React.createClass({
       this.refs.emailInput.getDOMNode().focus();
       return;
     }
+
     this.transitionTo('/chat');
   },
   updateName(e) {
@@ -62,8 +61,7 @@ let Login = React.createClass({
     }
   },
   componentDidMount() {
-    console.log('login page');
-    
+    console.log('Login Page: loaded');
     Velocity(this.refs.formWrapper.getDOMNode().childNodes, 'login.bounceIn', {
       stagger: 230,
       display: 'block'
@@ -72,7 +70,7 @@ let Login = React.createClass({
 
   render() {
     return(
-      <div className="login-page">
+      <div className="login-page" ref="loginPage">
         <form className="login-form" onSubmit={this.handleLogin} ref="formWrapper">
           <label>
             <span className="login-form__placeholder">
