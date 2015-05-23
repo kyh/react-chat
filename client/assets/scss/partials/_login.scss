@@ -30,21 +30,6 @@ $login-input-color:   #ABB6C1;
     overflow: hidden;
   }
 
-  &__name-wrapper {
-    @include bounceInLeft(
-      $duration: 0.85s,
-      $function: ease
-    );
-  }
-
-  &__email-wrapper {
-    @include bounceInLeft(
-      $duration: 0.85s,
-      $delay: .23s,
-      $function: ease
-    );
-  }
-
   &__placeholder {
     position: absolute;
     right: -65px;
@@ -107,11 +92,6 @@ $login-input-color:   #ABB6C1;
     text-transform: uppercase;
     width: 280px;
     transition: background 0.4s ease;
-    @include bounceInLeft(
-      $duration: 0.85s,
-      $delay: .46s,
-      $function: ease
-    );
 
     &:hover {
       background-color: darken($login-submit-bg, 10);
