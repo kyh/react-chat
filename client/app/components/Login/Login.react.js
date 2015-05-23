@@ -7,33 +7,57 @@ function validateEmail(email) {
   return re.test(email);
 }
 
+const INPUT_TEXT = {
+  name: { valid: 'Hey there!', invalid: 'Invalid name'},
+  email: { valid: 'Nice email!', invalid: 'Invalid email' }
+};
+
 let Login = React.createClass({
   mixins: [Navigation],
   getInitialState: function() {
     return {
       name: {
-        text: 'Hey there!'
+        valid: false,
+        text: INPUT_TEXT.name.valid
       },
       email: {
         valid: false,
-        text: 'Invalid email'
+        text: INPUT_TEXT.email.invalid
       }
     };
   },
   handleLogin(e) {
     e.preventDefault();
-    if (!this.state.email.valid) {
-      this.refs.emailInput.getDOMNode().focus();
+
+    if (!this.state.name.valid) {
+      Velocity.animate(this.refs.formWrapper.getDOMNode().childNodes[0], 'callout.shake')
+        .then(() => {
+          this.refs.nameInput.getDOMNode().focus();
+        });
       return;
     }
 
-    this.transitionTo('/chat');
+    if (!this.state.email.valid) {
+      Velocity.animate(this.refs.formWrapper.getDOMNode().childNodes[1], 'callout.shake')
+        .then(() => {
+          this.refs.emailInput.getDOMNode().focus();
+        });
+      return;
+    }
+
+    // Velocity(this.refs.formWrapper.getDOMNode().childNodes, 'login.bounceIn', {
+    //   stagger: 230,
+    //   display: 'block'
+    // });
+    // this.transitionTo('/chat');
   },
   updateName(e) {
     var target = e.target;
     if (target.value) {
+      this.setState({ name: { valid: true, text: INPUT_TEXT.name.valid }});
       target.previousSibling.classList.add('in');
     } else {
+      this.setState({name: { valid: false, text: INPUT_TEXT.name.valid }});
       target.previousSibling.classList.remove('in');
     }
   },
@@ -41,19 +65,9 @@ let Login = React.createClass({
     var target = e.target;
     if (target.value) {
       if (!validateEmail(target.value)) {
-        this.setState({
-          email: {
-            valid: false,
-            text: 'Invalid email'
-          }
-        });
+        this.setState({ email: { valid: false, text: INPUT_TEXT.email.invalid }});
       } else {
-        this.setState({
-          email: {
-            valid: true,
-            text: 'Nice email!'
-          }
-        });
+        this.setState({ email: { valid: true, text: INPUT_TEXT.email.valid }});
       }
       target.previousSibling.classList.add('in');
     } else {
@@ -76,7 +90,7 @@ let Login = React.createClass({
             <span className="login-form__placeholder">
               { this.state.name.text }
             </span>
-            <input className="login-form__input" type="text" placeholder="Name" onChange={ this.updateName } required />
+            <input className="login-form__input" type="text" placeholder="Name" ref="nameInput" onChange={ this.updateName } />
             <span className="login-form__icon">
               <svg version="1.1" width="14px" viewBox="0 0 18 19" preserveAspectRatio="xMidYMid meet">
                 <g>
@@ -91,7 +105,7 @@ let Login = React.createClass({
             <span className="login-form__placeholder">
               { this.state.email.text }
             </span>
-            <input className="login-form__input" type="email" placeholder="Email" ref="emailInput" onChange={ this.updateEmail } required />
+            <input className="login-form__input" type="email" placeholder="Email" ref="emailInput" onChange={ this.updateEmail } />
             <span className="login-form__icon">
               <svg version="1.1" width="16px" viewBox="0 0 22 16" preserveAspectRatio="xMidYMid meet">
                 <g>
