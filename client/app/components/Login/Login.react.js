@@ -1,8 +1,8 @@
-import React from 'react/addons';
+import React from 'react';
 import { Navigation } from 'react-router';
-import { onAnimationEnd } from '../ReactUtils/Animation.react';
 
-const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
+import Velocity from 'velocity-animate';
+import 'velocity-animate/velocity.ui';
 
 function validateEmail(email) {
   var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
@@ -63,16 +63,18 @@ let Login = React.createClass({
   },
   componentDidMount() {
     console.log('login page');
-    onAnimationEnd(this.refs.submitButton.getDOMNode()).then((el) => {
-      console.log('lalla');
-    })
+    
+    Velocity(this.refs.formWrapper.getDOMNode().childNodes, 'login.bounceIn', {
+      stagger: 230,
+      display: 'block'
+    });
   },
 
   render() {
     return(
       <div className="login-page">
-        <form className="login-form" onSubmit={this.handleLogin}>
-          <label className="login-form__name-wrapper">
+        <form className="login-form" onSubmit={this.handleLogin} ref="formWrapper">
+          <label>
             <span className="login-form__placeholder">
               { this.state.name.text }
             </span>
@@ -87,7 +89,7 @@ let Login = React.createClass({
               </svg>
             </span>
           </label>
-          <label className="login-form__email-wrapper">
+          <label>
             <span className="login-form__placeholder">
               { this.state.email.text }
             </span>
