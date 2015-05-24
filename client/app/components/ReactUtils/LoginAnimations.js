@@ -1,5 +1,4 @@
 import Velocity from 'velocity-animate';
-import 'velocity-animate/velocity.ui';
 
 function registerVelocityEvents() {
   Velocity.RegisterEffect('login.bounceIn', {
