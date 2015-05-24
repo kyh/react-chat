@@ -1,5 +1,7 @@
 import React from 'react'; 
 import ReplyBox from './ReplyBox.react';
+import VelocityTransitionGroup from '../ReactUtils/VelocityTransition.react';
+import Velocity from 'velocity-animate';
 
 import MessagesStore from '../../stores/MessagesStore';
 import UserStore from '../../stores/UserStore';
@@ -21,6 +23,14 @@ let MessageBox = React.createClass({
   },
   onStoreChange: function() {
     this.setState(getStateFromStore());
+  },
+  componentDidUpdate: function() {
+    var $messageList = this.refs.messageList.getDOMNode();
+    Velocity($messageList.lastElementChild, 'scroll', {
+      container: $messageList,
+      duration: 700,
+      easing: 'linear'
+    });
   },
   render: function() {
     var messagesLength = this.state.messages.length;
@@ -58,9 +68,9 @@ let MessageBox = React.createClass({
 
     return (
       <div className="message-box">
-        <ul className="message-box__list">
+        <VelocityTransitionGroup className="message-box__list" transitionName="slideup" component="ul" ref="messageList">
           { messages }
-        </ul>
+        </VelocityTransitionGroup>
         <ReplyBox />
       </div>
     );
