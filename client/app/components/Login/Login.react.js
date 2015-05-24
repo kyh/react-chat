@@ -40,16 +40,13 @@ let Login = React.createClass({
     }
 
     Velocity.animate(this.refs.formWrapper.getDOMNode().childNodes, 'transition.slideLeftOut', {
-      stagger: 230
+      stagger: 130,
+      duration: 600
     }).then(() => {
-      Velocity.animate(this.refs.loginPage.getDOMNode(), {
-        width: 220
-      }, {
-        duration: 500
-      }).then(() => {
-        console.log('done');
-        this.transitionTo('/chat');
-      });
+      Velocity.animate(this.refs.loginPage.getDOMNode(), 'login.slidePageLeft')
+        .then(() => {
+          this.transitionTo('/chat');
+        });
     });
     // Velocity(this.refs.loginPage.getDOMNode(), 'login.exitOut');
   },
