@@ -39,8 +39,19 @@ let Login = React.createClass({
       return;
     }
 
+    Velocity.animate(this.refs.formWrapper.getDOMNode().childNodes, 'transition.slideLeftOut', {
+      stagger: 230
+    }).then(() => {
+      Velocity.animate(this.refs.loginPage.getDOMNode(), {
+        width: 220
+      }, {
+        duration: 500
+      }).then(() => {
+        console.log('done');
+        this.transitionTo('/chat');
+      });
+    });
     // Velocity(this.refs.loginPage.getDOMNode(), 'login.exitOut');
-    // this.transitionTo('/chat');
   },
   handleInvalidInput(el) {
     Velocity.animate(el.parentNode, 'callout.shake')
