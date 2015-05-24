@@ -48,7 +48,6 @@ let Login = React.createClass({
           this.transitionTo('/chat');
         });
     });
-    // Velocity(this.refs.loginPage.getDOMNode(), 'login.exitOut');
   },
   handleInvalidInput(el) {
     Velocity.animate(el.parentNode, 'callout.shake')

@@ -1,4 +1,5 @@
-import React from 'react/addons'; 
+import React from 'react/addons';
+import VelocityTransitionGroup from '../ReactUtils/VelocityTransition.react';
 
 import Utils from '../../utils/utils';
 import MessagesActions from '../../actions/ChatViewAction';

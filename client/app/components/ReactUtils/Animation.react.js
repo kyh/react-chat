@@ -1,3 +1,4 @@
+import 'velocity-animate/velocity.ui';
 import LoginAnimation from './LoginAnimations';
 
 export function addAnimation(options = {el: null, className: '', delay: 0, beforeBegin: null }) {
