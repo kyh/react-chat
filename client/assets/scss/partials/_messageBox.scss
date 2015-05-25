@@ -7,6 +7,8 @@
   }
 
   &__item {
+    margin-top: 15px;
+    border-top: 1px solid #eee;
     position: relative;
     overflow: auto;
     
@@ -16,19 +18,20 @@
     }
 
     &__contents {
-      padding-bottom: 10px;   
+      padding-bottom: 5px;   
     }
 
     &__properties {
       overflow: auto;
       font-weight: 600;
-      padding-top: 10px;
+      padding-top: 12px;
 
-      author, time {
+      author {
         float: left;
       }
 
       time {
+        float: right;
         line-height: 2.3;
         font-size: 0.7em;
         margin-left: 10px;
@@ -42,11 +45,16 @@
       width: 40px;
       height: 40px;
       left: 20px;
-      top: 10px;
+      top: 12px;
       img {
         width: 100%;
         border-radius: 50%;
       }
+    }
+
+    &--no-padding, &:first-child {
+      margin: 0;
+      border: none;
     }
 
     // &--no-padding {

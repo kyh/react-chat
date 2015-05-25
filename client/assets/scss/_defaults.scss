@@ -1,12 +1,13 @@
-* {
-  box-sizing: border-box;
-  font-smoothing: antialiased;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 html {
   font-size: 62.5%;
   height: 100%;
+  box-sizing: border-box;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 body {
   background: #fff;
