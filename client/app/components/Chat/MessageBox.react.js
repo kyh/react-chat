@@ -1,6 +1,5 @@
 import React from 'react'; 
 import ReplyBox from './ReplyBox.react';
-import VelocityTransitionGroup from '../ReactUtils/VelocityTransition.react';
 import Velocity from 'velocity-animate';
 
 import MessagesStore from '../../stores/MessagesStore';
@@ -35,21 +34,48 @@ let MessageBox = React.createClass({
   render: function() {
     var messagesLength = this.state.messages.length;
     var currentUserID = UserStore.user.id;
+    var storeMessages = this.state.messages;
 
-    var messages = this.state.messages.map(function(message, index) {
+    var messages = storeMessages.map(function(message, index) {
+      var messageFromCurrentUser = message.from === currentUserID;
+      var messageThumbnail = (messageFromCurrentUser) ? UserStore.user.profilePicture : this.state.user.profilePicture;
+      var fromSameUser = false;
+      var messageProperties;
+
+      if (storeMessages[index - 1]) {
+        if (storeMessages[index - 1].from === message.from) {
+          fromSameUser = true
+        };
+      }
+
+      if (!fromSameUser) {
+        let ts = utils.getShortDate(message.timestamp);
+        let author = (messageFromCurrentUser) ? UserStore.user.name : this.state.user.name;
+        messageProperties = (
+          <div className="message-box__item__properties">
+            <div className="message-box__item__thumbnail">
+              <img src={ messageThumbnail } />
+            </div>
+            <author>{ author }</author>
+            <time>{ ts }</time>
+          </div>
+        );
+      }
+
       var messageClasses = React.addons.classSet({
         'message-box__item': true,
-        'message-box__item--from-current': message.from === currentUserID
+        'message-box__item--no-padding': fromSameUser
       });
 
       return (
         <li key={ message.timestamp + '-' + message.from } className={ messageClasses }>
+          { messageProperties }
           <div className="message-box__item__contents">
             { message.contents }
           </div>
         </li>
       );
-    });
+    }, this);
 
     var lastMessage = this.state.messages[messagesLength -1];
 
@@ -57,20 +83,18 @@ let MessageBox = React.createClass({
       if (this.state.lastAccess.recipient >= lastMessage.timestamp) {
         var date = utils.getShortDate(lastMessage.timestamp);
         messages.push(
-          <li key="read" className="message-box__item message-box__item--read">
-            <div className="message-box__item__contents">
-              Read { date }
-            </div>
-          </li>
+          <div key="read" className="message-box__item--read">
+            Read { date }
+          </div>
         );
       }
     }
 
     return (
       <div className="message-box">
-        <VelocityTransitionGroup className="message-box__list" transitionName="slideup" component="ul" ref="messageList">
+        <ul className="message-box__list" ref="messageList">
           { messages }
-        </VelocityTransitionGroup>
+        </ul>
         <ReplyBox />
       </div>
     );
