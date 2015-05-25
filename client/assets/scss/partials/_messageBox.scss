@@ -9,15 +9,18 @@
   &__item {
     position: relative;
     overflow: auto;
+    
+    &__contents, &__properties, &--read {
+      margin: 0 15px;
+      padding-left: 60px;
+    }
 
     &__contents {
-      padding: 0 0 10px 50px;   
-      margin: 0 15px;
+      padding-bottom: 10px;   
     }
 
     &__properties {
       overflow: auto;
-      margin-left: 65px;
       font-weight: 600;
       padding-top: 10px;
 
@@ -36,8 +39,8 @@
 
     &__thumbnail {
       position: absolute;
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       left: 20px;
       top: 10px;
       img {
@@ -46,17 +49,14 @@
       }
     }
 
-    &--no-padding {
-      .message-box__item__contents {
-        padding: 0 0 10px 50px;
-      }
-    }
+    // &--no-padding {
+    //   .message-box__item__contents {
+    //     padding: 0 0 10px 50px;
+    //   }
+    // }
 
     &--read {
-      margin-left: 65px;
-      background: none;
       font-size: 10px;
-      color: rgba( 0, 0, 0, 0.8 );
       font-weight: bold;
     }
   }
