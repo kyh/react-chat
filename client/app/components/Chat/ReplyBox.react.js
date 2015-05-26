@@ -28,7 +28,7 @@ let ReplyBox = React.createClass({
       <div className="reply-box">
         <input value={ this.state.value } onChange={ this.updateValue } onKeyDown={ this.handleKeyDown } className="reply-box__input" placeholder="Type message to reply.." />
         <span className="reply-box__tip">
-          Press <span className="reply-box__tip__button">Enter</span> to send
+          Press <span className="reply-box__tip__button">⏎</span> to send
         </span>
       </div>
     );
