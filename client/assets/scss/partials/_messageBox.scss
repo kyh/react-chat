@@ -1,8 +1,12 @@
 .message-box {
   flex: 1;
+  // background: url('../images/Home.png');
+  // background-size: 155%;
+  // background-repeat: no-repeat;
+  // background-position: -375px -198px;
 
   &__list {
-    height: calc(100vh - 68px);
+    height: calc(100vh - 79px);
     overflow: auto;
   }
 
@@ -14,7 +18,7 @@
     
     &__contents, &__properties, &--read {
       margin: 0 15px;
-      padding-left: 60px;
+      padding-left: 53px;
     }
 
     &__contents {
@@ -24,16 +28,18 @@
     &__properties {
       overflow: auto;
       font-weight: 600;
-      padding-top: 12px;
+      padding-top: 8px;
 
       author {
         float: left;
+        font-size: 1.1em;
+        color: #404346;
       }
 
       time {
         float: right;
-        line-height: 2.3;
-        font-size: 0.7em;
+        line-height: 2.7;
+        font-size: 0.65em;
         margin-left: 10px;
         text-transform: uppercase;
         color: #bbb;
@@ -42,10 +48,10 @@
 
     &__thumbnail {
       position: absolute;
-      width: 40px;
-      height: 40px;
-      left: 20px;
-      top: 12px;
+      width: 42px;
+      height: 42px;
+      left: 15px;
+      top: 9px;
       img {
         width: 100%;
         border-radius: 50%;
