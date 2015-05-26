@@ -1,5 +1,5 @@
 import React from 'react/addons';
-import VelocityTransitionGroup from '../ReactUtils/VelocityTransition.react';
+import Velocity from 'velocity-animate';
 
 import Utils from '../../utils/utils';
 import MessagesActions from '../../actions/ChatViewAction';
@@ -42,6 +42,12 @@ var UserList = React.createClass({
   },
   changeOpenChat: function(id) {
     MessagesActions.changeOpenChat(id);
+  },
+  componentDidMount: function() {
+    var $userList = this.refs.userList.getDOMNode();
+    Velocity.animate($userList.querySelectorAll('.user-list__item__details'), 'transition.slideLeftIn', {
+      stagger: 200
+    });
   },
   render: function() {
     this.state.messageList.sort(function(a, b) {
@@ -97,7 +103,7 @@ var UserList = React.createClass({
 
     return (
       <div className="user-list">
-        <ul className="user-list__list">
+        <ul className="user-list__list" ref="userList">
           { messages }
         </ul>
       </div>

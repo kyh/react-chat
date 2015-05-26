@@ -8,6 +8,7 @@
   &__list {
     height: calc(100vh - 79px);
     overflow: auto;
+    @include fadeIn();
   }
 
   &__item {

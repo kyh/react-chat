@@ -1,5 +1,5 @@
 $countDefault: 1s !default;
-$durationDefault: 1s !default;
+$durationDefault: 1.5s !default;
 $delayDefault: 0s !default;
 $functionDefault: ease !default;
 $fillDefault: both;
@@ -110,54 +110,42 @@ $visibilityDefault: hidden !default;
  * ANIMATIONS
  */
 
-// BounceInLeft
- @include keyframes(bounceInLeft) {
-   0% {
-     opacity: 0;
-     @include transform(translateX(-130px));
-   }
-   60% {
-     opacity: 1;
-     @include transform(translateX(10px));
-   }
-   80% {
-     @include transform(translateX(-5px));
-   }
-   100% {
-     @include transform(translateX(0));
-   }
- }
-
- @mixin bounceInLeft($count: $countDefault, $duration: $durationDefault, $delay: $delayDefault, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault) {
-   @include animation-name(bounceInLeft);
-   @include count($count);
-   @include duration($duration);
-   @include delay($delay);
-   @include function($function);
-   @include fill-mode($fill);
-   @include visibility($visibility);
- }
-
- // BounceInRight
- @include keyframes(bounceInRight) {
+// BounceInRight
+@include keyframes(bounceInUp) {
   0% {
     opacity: 0;
-    @include transform(translateX(130px));
+    @include transform(translateY(2000px));
   }
   60% {
     opacity: 1;
-    @include transform(translateX(-10px));
+    @include transform(translateY(-30px));
   }
   80% {
-    @include transform(translateX(5px));
+    @include transform(translateY(10px));
   }
   100% {
-    @include transform(translateX(0));
+    @include transform(translateY(0));
   }
 }
 
-@mixin bounceInRight($count: $countDefault, $duration: $durationDefault, $delay: $delayDefault, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault) {
-  @include animation-name(bounceInRight);
+@mixin bounceInUp($count: $countDefault, $duration: $durationDefault, $delay: $delayDefault, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault) {
+  @include animation-name(bounceInUp);
+  @include count($count);
+  @include duration($duration);
+  @include delay($delay);
+  @include function($function);
+  @include fill-mode($fill);
+  @include visibility($visibility);
+}
+
+// FadeIn
+@include keyframes(fadeIn) {
+    0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@mixin fadeIn($count: $countDefault, $duration: $durationDefault, $delay: $delayDefault, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault) {
+  @include animation-name(fadeIn);
   @include count($count);
   @include duration($duration);
   @include delay($delay);

@@ -1,10 +1,11 @@
 .reply-box {
     padding: 15px 15px 17px;
+    @include bounceInUp();
 
     &__input {
       display: block;
       width: 100%;
-      border-radius: 3px;
+      border-radius: 10px;
       border: 1px solid rgba( 0, 0, 0, 0.1 );
       padding: 14px 15px;
       font-size: 14px;
