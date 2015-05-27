@@ -1,6 +1,7 @@
 import React from 'react'; 
 import ReplyBox from './ReplyBox.react';
 import Velocity from 'velocity-animate';
+import marked from 'marked';
 
 import MessagesStore from '../../stores/MessagesStore';
 import UserStore from '../../stores/UserStore';
@@ -44,8 +45,8 @@ let MessageBox = React.createClass({
 
       if (storeMessages[index - 1]) {
         if (storeMessages[index - 1].from === message.from) {
-          fromSameUser = true
-        };
+          fromSameUser = true;
+        }
       }
 
       if (!fromSameUser) {
@@ -70,9 +71,12 @@ let MessageBox = React.createClass({
       return (
         <li key={ message.timestamp + '-' + message.from } className={ messageClasses }>
           { messageProperties }
-          <div className="message-box__item__contents">
-            { message.contents }
-          </div>
+          <div
+            className="message-box__item__contents"
+            dangerouslySetInnerHTML={{
+              __html: marked(message.contents, {sanitize: true})
+            }}
+          />
         </li>
       );
     }, this);
