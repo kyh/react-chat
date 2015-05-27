@@ -6,7 +6,7 @@
   // background-position: -375px -198px;
 
   &__list {
-    height: calc(100vh - 79px);
+    height: calc(100vh - 64px);
     overflow: auto;
     @include fadeIn();
   }
@@ -18,8 +18,8 @@
     overflow: auto;
     
     &__contents, &__properties, &--read {
-      margin: 0 15px;
-      padding-left: 53px;
+      margin: 0 20px;
+      padding-left: 65px;
     }
 
     &__contents {
@@ -29,7 +29,7 @@
     &__properties {
       overflow: auto;
       font-weight: 600;
-      padding-top: 8px;
+      padding-top: 10px;
 
       author {
         float: left;
@@ -51,11 +51,13 @@
       position: absolute;
       width: 42px;
       height: 42px;
-      left: 15px;
-      top: 9px;
+      left: 25px;
+      top: 13px;
+      border-radius: 50%;
+      box-shadow: 0 3px 10px 0 rgba(0,0,0,0.3);
+      overflow: hidden;
       img {
         width: 100%;
-        border-radius: 50%;
       }
     }
 
