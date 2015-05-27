@@ -10,6 +10,7 @@
       padding: 14px 15px;
       font-size: 14px;
       color: rgba( 0, 0, 0, 0.7 );
+      height: 47px;
 
       &:focus + .reply-box__tip {
         display: block;
@@ -19,7 +20,7 @@
     &__tip {
       display: none;
       position: absolute;
-      top: 32px;
+      bottom: 30px;
       right: 27px;
       opacity: 0.8;
       color: rgba(0, 0, 0, 0.4);

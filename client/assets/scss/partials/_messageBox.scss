@@ -23,7 +23,10 @@
     }
 
     &__contents {
-      padding-bottom: 5px;   
+      padding-bottom: 5px;
+      > p {
+        margin: 0;
+      }
     }
 
     &__properties {
