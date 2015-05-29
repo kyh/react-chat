@@ -10,8 +10,8 @@ module.exports = function() {
   console.log('Websocket listening on port ' + wss.options.port);
 
   wss.on('connection', function(ws) {
-
     console.log('User connected');
+    
     ws.on('message', function(data) {
       var msg = JSON.parse(data);
       console.log(msg);
