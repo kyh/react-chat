@@ -52,11 +52,13 @@ let MessageBox = React.createClass({
       if (!fromSameUser) {
         let ts = utils.getShortDate(message.timestamp);
         let author = (messageFromCurrentUser) ? UserStore.user.name : this.state.user.name;
+        let messageStyle = {
+          backgroundImage: `url(${messageThumbnail})`
+        };
+
         messageProperties = (
           <div className="message-box__item__properties">
-            <div className="message-box__item__thumbnail">
-              <img src={ messageThumbnail } />
-            </div>
+            <div className="message-box__item__thumbnail" style={ messageStyle } />
             <author>{ author }</author>
             <time>{ ts }</time>
           </div>
