@@ -5,7 +5,7 @@ let ActionTypes = ChatConstants.ActionTypes;
 let messageActions = {
   recieveMessage(messageEvent) {
     Dispatcher.dispatch({
-      type: ActionTypes.SEND_MESSAGE,
+      type: ActionTypes.RECEIVE_MESSAGE,
       userID: messageEvent.userID,
       message: messageEvent.message,
       timestamp: messageEvent.timestamp
