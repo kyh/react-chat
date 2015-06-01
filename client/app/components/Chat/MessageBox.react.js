@@ -5,7 +5,7 @@ import marked from 'marked';
 
 import MessagesStore from '../../stores/MessagesStore';
 import UserStore from '../../stores/UserStore';
-import utils from '../../utils/utils';
+import DateUtils from '../../utils/DateUtils';
 
 function getStateFromStore() {
   return MessagesStore.getChatByUserID(MessagesStore.getOpenChatUserID());
@@ -50,7 +50,7 @@ let MessageBox = React.createClass({
       }
 
       if (!fromSameUser) {
-        let ts = utils.getShortDate(message.timestamp);
+        let ts = DateUtils.getShortDate(message.timestamp);
         let author = (messageFromCurrentUser) ? UserStore.user.name : this.state.user.name;
         let messageStyle = {
           backgroundImage: `url(${messageThumbnail})`
@@ -87,7 +87,7 @@ let MessageBox = React.createClass({
 
     if (lastMessage.from === currentUserID) {
       if (this.state.lastAccess.recipient >= lastMessage.timestamp) {
-        var date = utils.getShortDate(lastMessage.timestamp);
+        var date = DateUtils.getShortDate(lastMessage.timestamp);
         messages.push(
           <div key="read" className="message-box__item--read">
             Read { date }

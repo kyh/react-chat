@@ -1,7 +1,7 @@
 import React from 'react/addons';
 import Velocity from 'velocity-animate';
 
-import Utils from '../../utils/utils';
+import DateUtils from '../../utils/DateUtils';
 import MessagesActions from '../../actions/ChatViewAction';
 import MessagesStore from '../../stores/MessagesStore';
 import UserStore from '../../stores/UserStore';
@@ -61,7 +61,7 @@ var UserList = React.createClass({
     });
 
     var messages = this.state.messageList.map(function(message, index) {
-      var date = Utils.getNiceDate(message.lastMessage.timestamp);
+      var date = DateUtils.getNiceDate(message.lastMessage.timestamp);
       var statusIcon;
 
       if (message.lastMessage.from !== message.user.id) {
