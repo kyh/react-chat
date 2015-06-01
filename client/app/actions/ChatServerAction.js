@@ -8,11 +8,14 @@ let messageActions = {
       type: ActionTypes.RECEIVE_MESSAGE,
       userID: messageEvent.userID,
       message: messageEvent.message,
-      timestamp: messageEvent.timestamp
+      timestamp: +new Date()
     });
   },
-  recieveAllMessages() {
-
+  recieveAllMessages(messageEvent) {
+    Dispatcher.dispatch({
+      type: ActionTypes.RECEIVE_ALL_MESSAGES,
+      connections: messageEvent.connections,
+    });
   }
 };
 
