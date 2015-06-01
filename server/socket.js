@@ -69,6 +69,26 @@ var connectedUsers = {
   }
 };
 
+const MessageFromClient = {
+  'LOGIN': function(name, email, id) {
+    this.send(SocketService.createLoginUser(name, email, id));
+  }
+};
+
+const SocketService = {
+  createLoginUser: function(name, email, id) {
+    var sendData = {
+      type: ActionTypes.loggedIn,
+      data: {
+        user: name,
+        id: id,
+        profilePicture: 'https://avatars1.githubusercontent.com/u/8901351?v=3&s=200'
+      }
+    };
+    return JSON.stringify(sendData);
+  }
+};
+
 module.exports = function() {
 
   var wss = new WebSocketServer({
@@ -87,6 +107,7 @@ module.exports = function() {
     ws.on('message', function(data) {
       var msg = JSON.parse(data);
       console.log(msg);
+      MessageFromClient[msg.type] && MessageFromClient[msg.type].call(ws, msg.data);
     });
 
   });

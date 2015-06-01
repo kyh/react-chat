@@ -2,7 +2,7 @@ var keyMirror = require('keymirror');
 
 var Constants = {
   ActionTypes: keyMirror({
-  	login: null,
+  	loggedIn: null,
     recieveMessage: null,
     recieveAllMessages: null
   })
