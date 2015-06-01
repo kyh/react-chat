@@ -14,8 +14,8 @@ let Socket = {
     };
 
     WS.onmessage = function(e){
-      console.log('Message from server', e.data);
-      // emit action
+      let message = JSON.parse(e.data);
+      ChatServerAction[message.type] && ChatServerAction[message.type](message);
     };
   },
 
