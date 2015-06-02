@@ -27,62 +27,72 @@ var connectedUsers = {
         timestamp: 1424469794000
       }
     ]
-  },
-  3: {
-    user: {
-      read: true,
-      profilePicture: 'https://avatars3.githubusercontent.com/u/2955483?v=3&s=460',
-      name: 'Jilles Soeters',
-      id: 3,
-      status: 'online'
-    },
-    lastAccess: {
-      recipient: 1424352522000,
-      currentUser: 1424352522080
-    },
-    messages: [
-      {
-        contents: 'Want a game of ping pong?',
-        from: 3,
-        timestamp: 1424352522000
-      }
-    ]
-  },
-  4: {
-    user: {
-      name: 'Todd Motto',
-      id: 4,
-      profilePicture: 'https://avatars1.githubusercontent.com/u/1655968?v=3&s=460',
-      status: 'online'
-    },
-    lastAccess: {
-      recipient: 1424423579000,
-      currentUser: 1424423574000
-    },
-    messages: [
-      {
-        contents: 'Please follow me on twitter I\'ll pay you',
-        timestamp: 1424423579000,
-        from: 4
-      }
-    ]
   }
+  // 3: {
+  //   user: {
+  //     read: true,
+  //     profilePicture: 'https://avatars3.githubusercontent.com/u/2955483?v=3&s=460',
+  //     name: 'Jilles Soeters',
+  //     id: 3,
+  //     status: 'online'
+  //   },
+  //   lastAccess: {
+  //     recipient: 1424352522000,
+  //     currentUser: 1424352522080
+  //   },
+  //   messages: [
+  //     {
+  //       contents: 'Want a game of ping pong?',
+  //       from: 3,
+  //       timestamp: 1424352522000
+  //     }
+  //   ]
+  // },
+  // 4: {
+  //   user: {
+  //     name: 'Todd Motto',
+  //     id: 4,
+  //     profilePicture: 'https://avatars1.githubusercontent.com/u/1655968?v=3&s=460',
+  //     status: 'online'
+  //   },
+  //   lastAccess: {
+  //     recipient: 1424423579000,
+  //     currentUser: 1424423574000
+  //   },
+  //   messages: [
+  //     {
+  //       contents: 'Please follow me on twitter I\'ll pay you',
+  //       timestamp: 1424423579000,
+  //       from: 4
+  //     }
+  //   ]
+  // }
 };
+var connectionIDCount = 10;
 
 const MessageFromClient = {
-  'LOGIN': function(name, email, id) {
-    this.send(SocketService.createLoginUser(name, email, id));
+  'LOGIN': function(user) {
+    var currentUser = {
+      user: {
+        name: user.name,
+        id: connectionIDCount,
+        profilePicture: 'https://avatars1.githubusercontent.com/u/8901351?v=3&s=200'
+      },
+      messages: []
+    };
+    this.send(SocketService.userLoginMessage(currentUser.user));
+    connectedUsers[connectionIDCount] = currentUser;
+    console.log('User logged in:', connectedUsers);
   }
 };
 
 const SocketService = {
-  createLoginUser: function(name, email, id) {
+  userLoginMessage: function(user) {
     var sendData = {
       type: ActionTypes.loggedIn,
       data: {
-        user: name,
-        id: id,
-        profilePicture: 'https://avatars1.githubusercontent.com/u/8901351?v=3&s=200'
+        currentUser: user,
+        connectedUsers: connectedUsers
       }
     };
     return JSON.stringify(sendData);
@@ -99,21 +109,19 @@ module.exports = function() {
 
   wss.on('connection', function(ws) {
     console.log('User connected');
-    ws.send(JSON.stringify({
-      type: ActionTypes.recieveAllMessages,
-      connections: connectedUsers
-    }));
+    connectionIDCount++;
+    ws.id = connectionIDCount;
     
     ws.on('message', function(data) {
       var msg = JSON.parse(data);
-      console.log(msg);
+      console.log('Recieved Message:', msg);
       MessageFromClient[msg.type] && MessageFromClient[msg.type].call(ws, msg.data);
     });
 
-  });
-
-  wss.on('close', function close() {
-    console.log('User disconnected');
+    ws.on('close', function close() {
+      delete connectedUsers[ws.id];
+      console.log('User disconnected');
+    });
   });
 
 };

@@ -4,7 +4,7 @@ var Constants = {
   ActionTypes: keyMirror({
   	loggedIn: null,
     recieveMessage: null,
-    recieveAllMessages: null
+    newUser: null
   })
 };
 
