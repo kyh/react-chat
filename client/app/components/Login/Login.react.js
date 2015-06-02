@@ -2,6 +2,9 @@ import React from 'react';
 import Velocity from 'velocity-animate';
 import { Navigation } from 'react-router';
 
+import MessagesActions from '../../actions/ChatViewAction';
+import UserStore from '../../stores/UserStore';
+
 function validateEmail(email) {
   var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
   return re.test(email);
@@ -14,17 +17,36 @@ const INPUT_TEXT = {
 
 let Login = React.createClass({
   mixins: [Navigation],
+  componentWillMount: function() {
+    UserStore.addChangeListener(this.onStoreChange);
+  },
+  componentWillUnmount: function() {
+    UserStore.removeChangeListener(this.onStoreChange);
+  },
   getInitialState: function() {
     return {
       name: {
         valid: false,
-        text: INPUT_TEXT.name.valid
+        text: INPUT_TEXT.name.valid,
+        value: ''
       },
       email: {
         valid: false,
-        text: INPUT_TEXT.email.invalid
+        text: INPUT_TEXT.email.invalid,
+        value: ''
       }
     };
+  },
+  onStoreChange() {
+    Velocity.animate(this.refs.formWrapper.getDOMNode().childNodes, 'transition.slideLeftOut', {
+      stagger: 130,
+      duration: 600
+    }).then(() => {
+      Velocity.animate(this.refs.loginPage.getDOMNode(), 'login.slidePageLeft')
+        .then(() => {
+          this.transitionTo('/chat');
+        });
+    });
   },
   handleLogin(e) {
     e.preventDefault();
@@ -39,15 +61,7 @@ let Login = React.createClass({
       return;
     }
 
-    Velocity.animate(this.refs.formWrapper.getDOMNode().childNodes, 'transition.slideLeftOut', {
-      stagger: 130,
-      duration: 600
-    }).then(() => {
-      Velocity.animate(this.refs.loginPage.getDOMNode(), 'login.slidePageLeft')
-        .then(() => {
-          this.transitionTo('/chat');
-        });
-    });
+    MessagesActions.login(this.state.name.value, this.state.email.value);
   },
   handleInvalidInput(el) {
     Velocity.animate(el.parentNode, 'callout.shake')
@@ -58,10 +72,10 @@ let Login = React.createClass({
   updateName(e) {
     var target = e.target;
     if (target.value) {
-      this.handleInputState(true, 'name');
+      this.handleInputState(true, 'name', target.value);
       target.previousSibling.classList.add('in');
     } else {
-      this.handleInputState(false, 'name');
+      this.handleInputState(false, 'name', target.value);
       target.previousSibling.classList.remove('in');
     }
   },
@@ -69,21 +83,22 @@ let Login = React.createClass({
     var target = e.target;
     if (target.value) {
       if (!validateEmail(target.value)) {
-        this.handleInputState(false, 'email');
+        this.handleInputState(false, 'email', target.value);
       } else {
-        this.handleInputState(true, 'email');
+        this.handleInputState(true, 'email', target.value);
       }
       target.previousSibling.classList.add('in');
     } else {
       target.previousSibling.classList.remove('in');
     }
   },
-  handleInputState(valid, textFrom) {
+  handleInputState(valid, textFrom, value) {
     var v = (valid) ? 'valid' : 'invalid';
     this.setState({
       [textFrom]: {
         valid: valid,
-        text: INPUT_TEXT[textFrom][v]
+        text: INPUT_TEXT[textFrom][v],
+        value: value
       }
     });
   },
@@ -103,7 +118,7 @@ let Login = React.createClass({
             <span className="login-form__placeholder">
               { this.state.name.text }
             </span>
-            <input className="login-form__input" type="text" placeholder="Name" ref="nameInput" onChange={ this.updateName } />
+            <input className="login-form__input" type="text" placeholder="Name" ref="nameInput" onChange={ this.updateName } value={ this.state.name.value } />
             <span className="login-form__icon">
               <svg version="1.1" width="14px" viewBox="0 0 18 19" preserveAspectRatio="xMidYMid meet">
                 <g>
@@ -118,7 +133,7 @@ let Login = React.createClass({
             <span className="login-form__placeholder">
               { this.state.email.text }
             </span>
-            <input className="login-form__input" type="email" placeholder="Email" ref="emailInput" onChange={ this.updateEmail } />
+            <input className="login-form__input" type="email" placeholder="Email" ref="emailInput" onChange={ this.updateEmail } value={ this.state.email.value } />
             <span className="login-form__icon">
               <svg version="1.1" width="16px" viewBox="0 0 22 16" preserveAspectRatio="xMidYMid meet">
                 <g>
