@@ -11,10 +11,14 @@ let messageActions = {
       timestamp: +new Date()
     });
   },
-  recieveAllMessages(messageEvent) {
+  loggedIn(messageEvent) {
+    Dispatcher.dispatch({
+      type: ActionTypes.LOGIN,
+      currentUser: messageEvent.currentUser
+    });
     Dispatcher.dispatch({
       type: ActionTypes.RECEIVE_ALL_MESSAGES,
-      connections: messageEvent.connections,
+      connections: messageEvent.connectedUsers,
     });
   }
 };

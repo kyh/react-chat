@@ -17,11 +17,10 @@ let messagesActions = {
       message: message,
       timestamp: +new Date()
     });
-    // console.log(Socket);
     // Socket.send(message);
   },
   login(name, email) {
-
+    Socket.send(Socket.createLoginData(ActionTypes.LOGIN, name, email));
   }
 };
 
