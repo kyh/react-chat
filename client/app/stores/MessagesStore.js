@@ -31,18 +31,18 @@ const MessagesStore = assign({}, EventEmitter.prototype, {
 const messageStoreActions = {
   [ActionTypes.CHANGE_CHAT_WINDOW]: (payload) => {
     openChatID = payload.userID;
-    messages[openChatID].lastAccess.currentUser = +new Date();
+    // messages[openChatID].lastAccess.currentUser = +new Date();
     MessagesStore.emit('change');
   },
   [ActionTypes.SEND_MESSAGE]: (payload) => {
     var userID = payload.userID;
     var currentUser = messages[userID];
 
-    currentUser.lastAccess.currentUser = +new Date();
+    // currentUser.lastAccess.currentUser = +new Date();
     currentUser.messages.push({
       contents: payload.message,
       timestamp: payload.timestamp,
-      from: UserStore.user.id
+      from: UserStore.getCurrentUserID()
     });
 
     MessagesStore.emit('change');

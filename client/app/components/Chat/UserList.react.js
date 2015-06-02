@@ -50,41 +50,42 @@ var UserList = React.createClass({
     });
   },
   render: function() {
-    this.state.messageList.sort(function(a, b) {
-      if (a.lastMessage.timestamp > b.lastMessage.timestamp) {
-        return -1;
-      }
-      if (a.lastMessage.timestamp < b.lastMessage.timestamp) {
-        return 1;
-      }
-      return 0;
-    });
+    console.log(this.state.messageList);
+    // this.state.messageList.sort(function(a, b) {
+    //   if (a.lastMessage.timestamp > b.lastMessage.timestamp) {
+    //     return -1;
+    //   }
+    //   if (a.lastMessage.timestamp < b.lastMessage.timestamp) {
+    //     return 1;
+    //   }
+    //   return 0;
+    // });
 
     var messages = this.state.messageList.map(function(message, index) {
-      var date = DateUtils.getNiceDate(message.lastMessage.timestamp);
-      var statusIcon;
+      // var date = DateUtils.getNiceDate(message.lastMessage.timestamp);
+      // var statusIcon;
 
-      if (message.lastMessage.from !== message.user.id) {
-        statusIcon = (
-          <i className="fa fa-reply user-list__item__icon"></i>
-        );
-      }
+      // if (message.lastMessage.from !== message.user.id) {
+      //   statusIcon = (
+      //     <i className="fa fa-reply user-list__item__icon"></i>
+      //   );
+      // }
 
-      if (message.lastAccess.currentUser < message.lastMessage.timestamp) {
-        statusIcon = (
-          <i className="fa fa-circle user-list__item__icon"></i>
-        );
-      }
+      // if (message.lastAccess.currentUser < message.lastMessage.timestamp) {
+      //   statusIcon = (
+      //     <i className="fa fa-circle user-list__item__icon"></i>
+      //   );
+      // }
 
-      var isNewMessage = false;
-      if (message.lastAccess.currentUser < message.lastMessage.timestamp) {
-        isNewMessage = message.lastMessage.from !== UserStore.user.id;
-      }
+      // var isNewMessage = false;
+      // if (message.lastAccess.currentUser < message.lastMessage.timestamp) {
+      //   isNewMessage = message.lastMessage.from !== UserStore.getCurrentUserID();
+      // }
 
       var itemClasses = React.addons.classSet({
         'user-list__item': true,
-        'user-list__item--new': isNewMessage,
         'user-list__item--active': this.state.openChatID === message.user.id
+        // 'user-list__item--new': isNewMessage,
       });
 
       return (
@@ -93,13 +94,13 @@ var UserList = React.createClass({
             <h4 className="user-list__item__name">
               { message.user.name }
             </h4>
-            <span className="user-list__item__message">
-              { statusIcon }
-            </span>
           </div>
         </li>
       )
     }, this);
+// <span className="user-list__item__message">
+//   { statusIcon }
+// </span>
 
     return (
       <div className="user-list">

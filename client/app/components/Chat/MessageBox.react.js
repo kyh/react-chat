@@ -34,12 +34,12 @@ let MessageBox = React.createClass({
   },
   render: function() {
     var messagesLength = this.state.messages.length;
-    var currentUserID = UserStore.user.id;
+    var currentUserID = UserStore.getCurrentUserID();
     var storeMessages = this.state.messages;
 
     var messages = storeMessages.map(function(message, index) {
       var messageFromCurrentUser = message.from === currentUserID;
-      var messageThumbnail = (messageFromCurrentUser) ? UserStore.user.profilePicture : this.state.user.profilePicture;
+      var messageThumbnail = (messageFromCurrentUser) ? UserStore.getCurrentUser().profilePicture : this.state.user.profilePicture;
       var fromSameUser = false;
       var messageProperties;
 
@@ -51,7 +51,7 @@ let MessageBox = React.createClass({
 
       if (!fromSameUser) {
         let ts = DateUtils.getShortDate(message.timestamp);
-        let author = (messageFromCurrentUser) ? UserStore.user.name : this.state.user.name;
+        let author = (messageFromCurrentUser) ? UserStore.getCurrentUser().name : this.state.user.name;
         let messageStyle = {
           backgroundImage: `url(${messageThumbnail})`
         };
@@ -84,15 +84,16 @@ let MessageBox = React.createClass({
     }, this);
 
     var lastMessage = this.state.messages[messagesLength -1];
-
-    if (lastMessage.from === currentUserID) {
-      if (this.state.lastAccess.recipient >= lastMessage.timestamp) {
-        var date = DateUtils.getShortDate(lastMessage.timestamp);
-        messages.push(
-          <div key="read" className="message-box__item--read">
-            Read { date }
-          </div>
-        );
+    if (lastMessage) {
+      if (lastMessage.from === currentUserID) {
+        if (this.state.lastAccess.recipient >= lastMessage.timestamp) {
+          var date = DateUtils.getShortDate(lastMessage.timestamp);
+          messages.push(
+            <div key="read" className="message-box__item--read">
+              Read { date }
+            </div>
+          );
+        }
       }
     }
 
