@@ -15,12 +15,20 @@ let Socket = {
 
     WS.onmessage = function(e){
       let message = JSON.parse(e.data);
-      ChatServerAction[message.type] && ChatServerAction[message.type](message);
+      ChatServerAction[message.type] && ChatServerAction[message.type](message.data);
     };
   },
-
+  createLoginData(type, name, email) {
+    return {
+      type: type,
+      data: {
+        name: name,
+        email: email
+      }
+    };
+  },
   send(message) {
-    WS.send(message);
+    WS.send(JSON.stringify(message));
   }
 };
 
