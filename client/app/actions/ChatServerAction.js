@@ -18,7 +18,7 @@ let messageActions = {
     });
     Dispatcher.dispatch({
       type: ActionTypes.RECEIVE_ALL_MESSAGES,
-      connections: messageEvent.connectedUsers,
+      connections: messageEvent.threads,
     });
   }
 };
