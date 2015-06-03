@@ -8,12 +8,7 @@ var connectedUsers = {
     user: {
       profilePicture: 'https://avatars0.githubusercontent.com/u/7922109?v=3&s=460',
       id: 2,
-      name: 'Ryan Clark',
-      status: 'online'
-    },
-    lastAccess: {
-      recipient: 1424469794050,
-      currentUser: 1424469794080
+      name: 'Ryan Clark'
     },
     messages: [
       {
@@ -88,11 +83,18 @@ const MessageFromClient = {
 
 const SocketService = {
   userLoginMessage: function(user) {
+    var threads = {};
+    for (var i in connectedUsers) {
+      threads[i] = {
+        user: connectedUsers[i].user,
+        messages: []
+      };
+    }
     var sendData = {
       type: ActionTypes.loggedIn,
       data: {
         currentUser: user,
-        connectedUsers: connectedUsers
+        threads: threads
       }
     };
     return JSON.stringify(sendData);
